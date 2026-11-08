@@ -78,43 +78,50 @@ function ProjectCard({ project, navigate }: { project: Project; navigate: (path:
 }
 function Home({ navigate }: { navigate: (path: string) => void }) {
   return <>
-    <section className="simple-hero page-shell">
-      <div className="simple-hero-copy">
-        <p className="eyebrow">ANURAG PARKHE · IIT (BHU) · PUNE, INDIA</p>
-        <h1>I turn data into <em>better business decisions.</em></h1>
-        <p className="simple-intro">I’m an engineering graduate building my career in analytics. I use SQL, Python, Excel and Power BI to investigate business problems, find useful patterns and explain what the data means.</p>
-        <div className="hero-actions">
-          <Button onClick={() => navigate("/projects")}>View my projects <ArrowUpRight size={16}/></Button>
-          <a className="button button-secondary" href="/resume.pdf" target="_blank" rel="noreferrer"><Download size={15}/> View resume</a>
+    <section className="atelier-hero">
+      <div className="atelier-grid page-shell">
+        <div className="atelier-copy">
+          <div className="atelier-kicker"><span className="live-dot"/> AVAILABLE FOR ANALYTICS & BUSINESS ROLES <span className="kicker-index">01 / 04</span></div>
+          <p className="atelier-overline">ANURAG PARKHE <span>—</span> ANALYTICS / FINANCE / PRODUCT</p>
+          <h1>Curiosity,<br/>made <i>useful.</i></h1>
+          <p className="atelier-intro">I investigate business problems with data, build tools that make complexity easier to see, and turn findings into decisions.</p>
+          <div className="atelier-actions">
+            <Button onClick={() => navigate("/projects")}>Explore selected work <ArrowUpRight size={16}/></Button>
+            <a className="atelier-resume" href="/resume.pdf" target="_blank" rel="noreferrer">VIEW RÉSUMÉ <Download size={14}/></a>
+          </div>
+          <div className="atelier-indexline"><span>BASED IN INDIA</span><span>SQL · PYTHON · POWER BI</span><span>SCROLL TO EXPLORE ↓</span></div>
+        </div>
+        <div className="orbit-stage" aria-label="Abstract animated three-dimensional data sculpture">
+          <div className="orbit-grain"/>
+          <div className="orbit-halo halo-one"/><div className="orbit-halo halo-two"/>
+          <div className="orbit-ring ring-a"/><div className="orbit-ring ring-b"/><div className="orbit-ring ring-c"/>
+          <div className="orbit-core"><div className="core-shine"/><span>AP</span></div>
+          <div className="orbit-node node-one"/><div className="orbit-node node-two"/><div className="orbit-node node-three"/>
+          <div className="orbit-label label-top">SIGNAL / 001</div><div className="orbit-label label-bottom">THINK IN SYSTEMS</div>
+          <div className="orbit-crosshair">✳</div>
         </div>
       </div>
-      <aside className="proof-panel">
-        <p className="eyebrow">AT A GLANCE</p>
-        <div><strong>IIT (BHU)</strong><span>B.Tech · 2026</span></div>
-        <div><strong>Hightide</strong><span>FinTech · Analyst Intern</span></div>
-        <div><strong>4 projects</strong><span>Data · Product · Markets</span></div>
-        <div className="proof-tools"><span>SQL</span><span>PYTHON</span><span>POWER BI</span><span>EXCEL</span></div>
-      </aside>
+      <div className="atelier-marquee" aria-hidden="true"><div>DATA WITH CONTEXT <span>✳</span> BUSINESS WITH INTENT <span>✳</span> DECISIONS WITH EVIDENCE <span>✳</span> DATA WITH CONTEXT <span>✳</span> BUSINESS WITH INTENT <span>✳</span></div></div>
     </section>
-    <section className="page-shell section-block simple-work">
-      <div className="simple-section-head"><div><p className="eyebrow">SELECTED WORK</p><h2>Projects that show how I think.</h2><p className="muted">Real analytical work, with the approach and limitations explained clearly.</p></div><button className="text-link" onClick={() => navigate("/projects")}>ALL PROJECTS <ArrowRight size={16}/></button></div>
-      <div className="project-grid">{projects.slice(0,3).map(p=><ProjectCard key={p.slug} project={p} navigate={navigate}/>)}</div>
+    <section className="atelier-proof page-shell">
+      <div className="proof-heading"><span>01 — THE PRACTICE</span><p>A little about the work.</p></div>
+      <div className="proof-cell"><b>IIT (BHU)</b><span>Engineering foundation</span></div>
+      <div className="proof-cell"><b>Hightide</b><span>FinTech · Analyst internship</span></div>
+      <div className="proof-cell"><b>Cross-disciplinary</b><span>Markets / product / data</span></div>
+      <div className="proof-cell"><b>Tools</b><span>SQL / Python / Power BI</span></div>
     </section>
-    <section className="simple-explore">
-      <div className="page-shell simple-explore-inner">
-        <div><p className="eyebrow">EXPLORE MORE</p><h2>Dashboards & presentations</h2><p>Interactive examples of analysis and how I communicate findings.</p></div>
-        <div className="simple-explore-actions"><Button onClick={() => navigate("/dashboards")}>View dashboards <BarChart3 size={16}/></Button><Button variant="secondary" onClick={() => navigate("/presentations")}>View presentations <Presentation size={16}/></Button></div>
+    <section className="atelier-work page-shell">
+      <div className="atelier-section-head"><div><span className="atelier-overline">02 — SELECTED WORK</span><h2>Work that asks<br/>better <i>questions.</i></h2></div><p>Explorations across markets, customer behaviour and business performance. Each case study shows the thinking, not just the output.</p></div>
+      <div className="project-grid atelier-project-grid">{projects.slice(0,3).map((p,i)=><div className="atelier-project-wrap" key={p.slug}><span className="atelier-project-number">0{i+1} / FEATURED</span><ProjectCard project={p} navigate={navigate}/></div>)}</div>
+      <button className="atelier-all-work" onClick={() => navigate("/projects")}>VIEW ALL PROJECTS <ArrowUpRight size={16}/></button>
+    </section>
+    <section className="atelier-lab">
+      <div className="page-shell atelier-lab-inner">
+        <div><span className="atelier-overline">03 — BEYOND THE NOTEBOOK</span><h2>Make the insight<br/><i>something you can use.</i></h2><p>Interactive dashboards and concise presentations that make analysis tangible.</p></div>
+        <div className="lab-links"><button onClick={() => navigate("/dashboards")}><span>01</span> Interactive dashboards <ArrowUpRight size={17}/></button><button onClick={() => navigate("/presentations")}><span>02</span> Research & presentations <ArrowUpRight size={17}/></button><button onClick={() => navigate("/experience")}><span>03</span> Experience & background <ArrowUpRight size={17}/></button></div>
       </div>
     </section>
-    <section className="page-shell section-block simple-experience">
-      <div className="simple-section-head"><div><p className="eyebrow">EXPERIENCE</p><h2>Where I’ve applied my skills.</h2></div><button className="text-link" onClick={() => navigate("/experience")}>FULL EXPERIENCE <ArrowRight size={16}/></button></div>
-      <div className="simple-experience-grid">
-        <div><span>2025 · FINTECH</span><h3>Business & Data Analyst Intern</h3><p>Hightide</p></div>
-        <div><span>PRODUCT EXPERIMENT</span><h3>Co-founder</h3><p>MentorQ Pro · EdTech</p></div>
-        <div><span>2022–2026 · EDUCATION</span><h3>B.Tech, Ceramic Engineering</h3><p>IIT (BHU), Varanasi</p></div>
-      </div>
-    </section>
-    <section className="simple-contact"><div className="page-shell simple-contact-inner"><div><p className="eyebrow">LET’S CONNECT</p><h2>Have a role or problem in mind?</h2></div><a className="button button-light" href="mailto:anuragparkhe7755@gmail.com">Email me <ArrowUpRight size={16}/></a></div></section>
+    <section className="atelier-contact page-shell"><span className="atelier-overline">04 — OPEN CONVERSATION</span><div className="atelier-contact-row"><h2>Have an interesting<br/><i>problem to solve?</i></h2><a href="mailto:anuragparkhe7755@gmail.com">LET'S TALK <ArrowUpRight size={19}/></a></div><div className="atelier-contact-foot"><span>ANURAG PARKHE © {new Date().getFullYear()}</span><span>BUILT WITH INTENTION, NOT TEMPLATES.</span></div></section>
   </>;
 }
 function Projects({ navigate }: { navigate: (path: string) => void }) {
