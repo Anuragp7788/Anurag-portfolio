@@ -78,35 +78,43 @@ function ProjectCard({ project, navigate }: { project: Project; navigate: (path:
 }
 function Home({ navigate }: { navigate: (path: string) => void }) {
   return <>
-    <section className="masthead page-shell">
-      <div className="masthead-kicker"><span>PORTFOLIO / 2026</span><span>PUNE, INDIA · OPEN TO WORK</span></div>
-      <div className="masthead-grid">
-        <div className="masthead-copy">
-          <p className="eyebrow">BUSINESS ANALYSIS · DATA · FINANCIAL THINKING</p>
-          <h1>Make the numbers <em>mean something.</em></h1>
-          <p className="masthead-intro">I'm Anurag Parkhe — an engineer by training, analyst by practice. I turn messy questions into structured analysis, and analysis into decisions people can act on.</p>
-          <div className="hero-actions"><Button onClick={() => navigate("/projects")}>Explore selected work <ArrowUpRight size={16}/></Button><a className="button button-secondary" href="/resume.pdf" target="_blank" rel="noreferrer"><Download size={15}/> Resume / PDF</a></div>
-          <div className="masthead-foot"><span>01 — 04 / SELECTED CASES</span><span>SCROLL TO EXPLORE ↓</span></div>
+    <section className="simple-hero page-shell">
+      <div className="simple-hero-copy">
+        <p className="eyebrow">ANURAG PARKHE · IIT (BHU) · PUNE, INDIA</p>
+        <h1>I turn data into <em>better business decisions.</em></h1>
+        <p className="simple-intro">I’m an engineering graduate building my career in analytics. I use SQL, Python, Excel and Power BI to investigate business problems, find useful patterns and explain what the data means.</p>
+        <div className="hero-actions">
+          <Button onClick={() => navigate("/projects")}>View my projects <ArrowUpRight size={16}/></Button>
+          <a className="button button-secondary" href="/resume.pdf" target="_blank" rel="noreferrer"><Download size={15}/> View resume</a>
         </div>
-        <aside className="practice-sheet">
-          <div className="sheet-head"><span>THE WORKING METHOD</span><span>FIG. 01</span></div>
-          <div className="sheet-title">From question<br/>to <em>decision.</em></div>
-          <div className="method-list">
-            <div><span>01</span><b>Frame</b><small>Find the real problem</small></div>
-            <div><span>02</span><b>Measure</b><small>Choose useful evidence</small></div>
-            <div><span>03</span><b>Interpret</b><small>Separate signal from noise</small></div>
-            <div><span>04</span><b>Recommend</b><small>Make the next move clear</small></div>
-          </div>
-          <div className="sheet-graph"><span>CLARITY</span><svg viewBox="0 0 320 54" role="img" aria-label="Illustrative analytical process line"><path d="M2 43 C38 43 39 29 72 32 S115 13 148 24 S190 6 220 17 S273 3 318 4" fill="none" stroke="currentColor" strokeWidth="1.6"/><path d="M2 52H318" stroke="currentColor" opacity=".25" strokeWidth="1" strokeDasharray="2 4"/></svg><span>COMPLEXITY → ACTION</span></div>
-          <div className="sheet-foot"><span>PYTHON / SQL / POWER BI</span><span>THINK · TEST · LEARN</span></div>
-        </aside>
       </div>
-      <div className="credentials-line"><div><b>IIT (BHU)</b><span>Ceramic Engineering · 2026</span></div><div><b>HIGHTIDE</b><span>FinTech · Analyst Intern</span></div><div><b>MENTORQ PRO</b><span>EdTech · Co-founder experiment</span></div><div><b>INTERESTS</b><span>Product / Business / Finance</span></div></div>
+      <aside className="proof-panel">
+        <p className="eyebrow">AT A GLANCE</p>
+        <div><strong>IIT (BHU)</strong><span>B.Tech · 2026</span></div>
+        <div><strong>Hightide</strong><span>FinTech · Analyst Intern</span></div>
+        <div><strong>4 projects</strong><span>Data · Product · Markets</span></div>
+        <div className="proof-tools"><span>SQL</span><span>PYTHON</span><span>POWER BI</span><span>EXCEL</span></div>
+      </aside>
     </section>
-    <section className="page-shell section-block work-intro"><div className="section-top"><SectionHeading eyebrow="SELECTED WORK / 01" title="Questions worth investigating." description="A working archive of analytical projects. Each case study makes the question, method, assumptions and limitations visible."/><button className="text-link" onClick={() => navigate("/projects")}>VIEW ALL WORK <ArrowRight size={16}/></button></div><div className="project-grid">{projects.slice(0,3).map(p=><ProjectCard key={p.slug} project={p} navigate={navigate}/>)}</div></section>
-    <section className="feature-band"><div className="page-shell feature-inner"><div><p className="eyebrow">INTERACTIVE WORK / 02</p><h2>Explore the thinking.<br/><em>Not just the finished slide.</em></h2><p className="muted">Interactive dashboards and browser-native presentations—built to show how I structure a problem, inspect evidence and communicate a point of view.</p></div><div className="feature-actions"><Button onClick={() => navigate("/dashboards")}>Open dashboard <BarChart3 size={16}/></Button><Button variant="secondary" onClick={() => navigate("/presentations")}>Read the field notes <Presentation size={16}/></Button></div></div></section>
-    <section className="page-shell section-block"><div className="section-top"><SectionHeading eyebrow="BACKGROUND / 03" title="An unconventional route into analytics." description="Engineering trained me to think in systems. FinTech, product experiments and independent projects gave me places to apply that thinking."/><button className="text-link" onClick={() => navigate("/experience")}>FULL EXPERIENCE <ArrowRight size={16}/></button></div><div className="experience-preview"><div><span className="eyebrow">MAY — JUL 2025</span><h3>Business & Data Analyst Intern</h3><p>Hightide · FinTech</p><p className="muted">Trading tools, business analysis and dashboard-oriented reporting.</p></div><div><span className="eyebrow">PRODUCT EXPERIMENT</span><h3>Co-founder</h3><p>MentorQ Pro · EdTech</p><p className="muted">Early product thinking, customer problem exploration and demand validation.</p></div><div><span className="eyebrow">2022 — 2026</span><h3>B.Tech, Ceramic Engineering</h3><p>IIT (BHU), Varanasi</p><p className="muted">An engineering foundation with an interdisciplinary business lens.</p></div></div></section>
-    <section className="contact-band"><div className="page-shell contact-inner"><div><p className="eyebrow">OPEN TO THE RIGHT PROBLEM</p><h2>Let's make a better<br/><em>decision together.</em></h2></div><a className="button button-light" href="mailto:anuragparkhe7755@gmail.com">Start a conversation <ArrowUpRight size={16}/></a></div></section>
+    <section className="page-shell section-block simple-work">
+      <div className="simple-section-head"><div><p className="eyebrow">SELECTED WORK</p><h2>Projects that show how I think.</h2><p className="muted">Real analytical work, with the approach and limitations explained clearly.</p></div><button className="text-link" onClick={() => navigate("/projects")}>ALL PROJECTS <ArrowRight size={16}/></button></div>
+      <div className="project-grid">{projects.slice(0,3).map(p=><ProjectCard key={p.slug} project={p} navigate={navigate}/>)}</div>
+    </section>
+    <section className="simple-explore">
+      <div className="page-shell simple-explore-inner">
+        <div><p className="eyebrow">EXPLORE MORE</p><h2>Dashboards & presentations</h2><p>Interactive examples of analysis and how I communicate findings.</p></div>
+        <div className="simple-explore-actions"><Button onClick={() => navigate("/dashboards")}>View dashboards <BarChart3 size={16}/></Button><Button variant="secondary" onClick={() => navigate("/presentations")}>View presentations <Presentation size={16}/></Button></div>
+      </div>
+    </section>
+    <section className="page-shell section-block simple-experience">
+      <div className="simple-section-head"><div><p className="eyebrow">EXPERIENCE</p><h2>Where I’ve applied my skills.</h2></div><button className="text-link" onClick={() => navigate("/experience")}>FULL EXPERIENCE <ArrowRight size={16}/></button></div>
+      <div className="simple-experience-grid">
+        <div><span>2025 · FINTECH</span><h3>Business & Data Analyst Intern</h3><p>Hightide</p></div>
+        <div><span>PRODUCT EXPERIMENT</span><h3>Co-founder</h3><p>MentorQ Pro · EdTech</p></div>
+        <div><span>2022–2026 · EDUCATION</span><h3>B.Tech, Ceramic Engineering</h3><p>IIT (BHU), Varanasi</p></div>
+      </div>
+    </section>
+    <section className="simple-contact"><div className="page-shell simple-contact-inner"><div><p className="eyebrow">LET’S CONNECT</p><h2>Have a role or problem in mind?</h2></div><a className="button button-light" href="mailto:anuragparkhe7755@gmail.com">Email me <ArrowUpRight size={16}/></a></div></section>
   </>;
 }
 function Projects({ navigate }: { navigate: (path: string) => void }) {
