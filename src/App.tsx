@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { ArrowDownRight, ArrowLeft, ArrowRight, ArrowUpRight, BarChart3, BriefcaseBusiness, Check, ChevronDown, ChevronLeft, ChevronRight, Code2, Download, ExternalLink, FileText, Github, GraduationCap, Layers3, Linkedin, Mail, Menu, Presentation, Sparkles, X } from "lucide-react";
+import { ArrowDownRight, ArrowLeft, ArrowRight, ArrowUpRight, BarChart3, BriefcaseBusiness, Check, ChevronDown, ChevronLeft, ChevronRight, Code2, Download, ExternalLink, FileText, Github, GraduationCap, Layers3, Linkedin, Mail, Menu, Presentation, Sparkles, Sun, Moon, X } from "lucide-react";
 import { projects, type Project } from "./data/projects";
 
 type Route = { path: string; params?: Record<string, string> };
@@ -62,12 +62,12 @@ const SectionHeading = ({ eyebrow, title, description }: { eyebrow: string; titl
 );
 const Tag = ({ children }: { children: React.ReactNode }) => <span className="tag">{children}</span>;
 
-function Header({ path, navigate }: { path: string; navigate: (path: string) => void }) {
+function Header({ path, navigate, theme, onToggleTheme }: { path: string; navigate: (path: string) => void; theme: "dark" | "light"; onToggleTheme: () => void }) {
   const [open, setOpen] = useState(false);
   return <header className="site-header"><div className="nav-wrap">
-    <button className="wordmark" onClick={() => navigate("/")} aria-label="Go to homepage"><span className="wordmark-mark">AP</span><span>ANURAG PARKHE<small>BUSINESS · DATA · FINANCE</small></span></button>
+    <button className="wordmark" onClick={() => navigate("/")} aria-label="Go to homepage"><span className="wordmark-mark">AP<span>·</span></span><span>ANURAG PARKHE<small>INDEPENDENT ANALYTICS PRACTICE</small></span></button>
     <nav className={open ? "nav-links nav-open" : "nav-links"}>{nav.map(item => <button key={item.path} className={path === item.path || (item.path === "/projects" && path.startsWith("/projects")) ? "nav-link active" : "nav-link"} onClick={() => { navigate(item.path); setOpen(false); }}>{item.label}</button>)}</nav>
-    <div className="nav-actions"><a className="nav-contact" href="mailto:anuragparkhe7755@gmail.com">Let's talk <ArrowUpRight size={15}/></a><button className="mobile-toggle" onClick={() => setOpen(!open)} aria-label="Toggle navigation">{open ? <X/> : <Menu/>}</button></div>
+    <div className="nav-actions"><button className="theme-toggle" onClick={onToggleTheme} aria-label={theme === "dark" ? "Switch to light theme" : "Switch to dark theme"} title={theme === "dark" ? "Switch to light theme" : "Switch to dark theme"}>{theme === "dark" ? <Sun size={16}/> : <Moon size={16}/>}<span>{theme === "dark" ? "LIGHT" : "DARK"}</span></button><a className="nav-contact" href="mailto:anuragparkhe7755@gmail.com">LET'S TALK <ArrowUpRight size={14}/></a><button className="mobile-toggle" onClick={() => setOpen(!open)} aria-label="Toggle navigation">{open ? <X/> : <Menu/>}</button></div>
   </div></header>;
 }
 function Footer({ navigate }: { navigate: (path: string) => void }) {
@@ -77,12 +77,37 @@ function ProjectCard({ project, navigate }: { project: Project; navigate: (path:
   return <article className="project-card"><button className="project-art" onClick={() => navigate(`/projects/${project.slug}`)} aria-label={`Open ${project.title}`}><div className={`art-pattern art-${project.visual}`}><span>{project.number}</span><div className="art-lines"><i/><i/><i/><i/></div><strong>{project.visualLabel}</strong></div><span className="card-open"><ArrowUpRight size={18}/></span></button><div className="project-meta"><span className="eyebrow">{project.category}</span><span className="project-status">{project.status}</span></div><h3>{project.title}</h3><p className="muted">{project.summary}</p><div className="tag-row">{project.tools.slice(0, 4).map(t => <Tag key={t}>{t}</Tag>)}</div><button className="text-link" onClick={() => navigate(`/projects/${project.slug}`)}>Explore case study <ArrowRight size={15}/></button></article>;
 }
 function Home({ navigate }: { navigate: (path: string) => void }) {
-  return <><section className="hero page-shell"><div className="hero-copy"><div className="availability"><span/> OPEN TO ANALYTICS & BUSINESS OPPORTUNITIES</div><p className="eyebrow">HELLO, I'M ANURAG PARKHE</p><h1>Turning business questions into <em>clear decisions.</em></h1><p className="hero-sub">I work across data, finance and product—using structured analysis to understand problems, uncover patterns and communicate what to do next.</p><div className="hero-actions"><Button onClick={() => navigate("/projects")}>Explore my work <ArrowUpRight size={17}/></Button><a className="button button-secondary" href="/resume.pdf" target="_blank" rel="noreferrer"><Download size={16}/> View resume</a></div><div className="hero-proof"><div><strong>IIT (BHU)</strong><span>Ceramic Engineering · 2026</span></div><div><strong>FinTech</strong><span>Business & Data Analyst Intern</span></div><div><strong>3+ domains</strong><span>Business · Data · Markets</span></div></div></div><div className="hero-visual"><div className="visual-top"><span>ANALYTICAL APPROACH</span><span>01 — 04</span></div><div className="visual-question">A better question<br/>leads to a better <em>decision.</em></div><div className="visual-flow">{["Frame the problem","Measure what matters","Find the signal","Recommend action"].map((x,i)=><div key={x}><span>0{i+1}</span>{x}<ArrowUpRight size={15}/></div>)}</div><div className="visual-foot"><span>PYTHON / SQL / POWER BI</span><span>THINK · TEST · LEARN</span></div></div></section>
-  <section className="strip"><div className="page-shell strip-inner"><span>AREAS OF INTEREST</span>{["Product analytics","Business intelligence","Financial analysis","Growth & operations"].map(x=><b key={x}>{x}</b>)}</div></section>
-  <section className="page-shell section-block"><div className="section-top"><SectionHeading eyebrow="SELECTED WORK / 01" title="Analysis with a business point of view." description="A selection of analytical projects and problem-solving work. Open each case study to explore the question, method and limitations."/><button className="text-link" onClick={() => navigate("/projects")}>All projects <ArrowRight size={16}/></button></div><div className="project-grid">{projects.slice(0,3).map(p=><ProjectCard key={p.slug} project={p} navigate={navigate}/>)}</div></section>
-  <section className="feature-band"><div className="page-shell feature-inner"><div><p className="eyebrow">INTERACTIVE WORK / 02</p><h2>Don't just read about the work.<br/><em>Explore it in the browser.</em></h2><p className="muted">Open interactive dashboards and presentation-style walkthroughs directly on this site—no external viewer required.</p></div><div className="feature-actions"><Button onClick={() => navigate("/dashboards")}>Explore dashboards <BarChart3 size={17}/></Button><Button variant="secondary" onClick={() => navigate("/presentations")}>View presentations <Presentation size={17}/></Button></div></div></section>
-  <section className="page-shell section-block"><SectionHeading eyebrow="EXPERIENCE / 03" title="A mix of analytical and entrepreneurial experience."/><div className="experience-preview"><div><span className="eyebrow">MAY — JUL 2025</span><h3>Business & Data Analyst Intern</h3><p>Hightide · FinTech</p><p className="muted">Worked with trading tools, business data and dashboard-oriented analysis.</p></div><div><span className="eyebrow">PRODUCT EXPERIMENT</span><h3>Co-founder</h3><p>MentorQ Pro · EdTech</p><p className="muted">Explored a mentoring product, customer acquisition and early demand validation.</p></div><div><span className="eyebrow">EDUCATION</span><h3>B.Tech, Ceramic Engineering</h3><p>IIT (BHU), Varanasi · 2026</p><p className="muted">Engineering foundation with an interdisciplinary interest in business and analytics.</p></div></div><button className="text-link" onClick={() => navigate("/experience")}>More about my experience <ArrowRight size={16}/></button></section>
-  <section className="contact-band"><div className="page-shell contact-inner"><div><p className="eyebrow">HAVE A BUSINESS QUESTION?</p><h2>Let's make the next<br/><em>decision clearer.</em></h2></div><a className="button button-light" href="mailto:anuragparkhe7755@gmail.com">Get in touch <ArrowUpRight size={17}/></a></div></section></>;
+  return <>
+    <section className="masthead page-shell">
+      <div className="masthead-kicker"><span>PORTFOLIO / 2026</span><span>PUNE, INDIA · OPEN TO WORK</span></div>
+      <div className="masthead-grid">
+        <div className="masthead-copy">
+          <p className="eyebrow">BUSINESS ANALYSIS · DATA · FINANCIAL THINKING</p>
+          <h1>Make the numbers <em>mean something.</em></h1>
+          <p className="masthead-intro">I'm Anurag Parkhe — an engineer by training, analyst by practice. I turn messy questions into structured analysis, and analysis into decisions people can act on.</p>
+          <div className="hero-actions"><Button onClick={() => navigate("/projects")}>Explore selected work <ArrowUpRight size={16}/></Button><a className="button button-secondary" href="/resume.pdf" target="_blank" rel="noreferrer"><Download size={15}/> Resume / PDF</a></div>
+          <div className="masthead-foot"><span>01 — 04 / SELECTED CASES</span><span>SCROLL TO EXPLORE ↓</span></div>
+        </div>
+        <aside className="practice-sheet">
+          <div className="sheet-head"><span>THE WORKING METHOD</span><span>FIG. 01</span></div>
+          <div className="sheet-title">From question<br/>to <em>decision.</em></div>
+          <div className="method-list">
+            <div><span>01</span><b>Frame</b><small>Find the real problem</small></div>
+            <div><span>02</span><b>Measure</b><small>Choose useful evidence</small></div>
+            <div><span>03</span><b>Interpret</b><small>Separate signal from noise</small></div>
+            <div><span>04</span><b>Recommend</b><small>Make the next move clear</small></div>
+          </div>
+          <div className="sheet-graph"><span>CLARITY</span><svg viewBox="0 0 320 54" role="img" aria-label="Illustrative analytical process line"><path d="M2 43 C38 43 39 29 72 32 S115 13 148 24 S190 6 220 17 S273 3 318 4" fill="none" stroke="currentColor" strokeWidth="1.6"/><path d="M2 52H318" stroke="currentColor" opacity=".25" strokeWidth="1" strokeDasharray="2 4"/></svg><span>COMPLEXITY → ACTION</span></div>
+          <div className="sheet-foot"><span>PYTHON / SQL / POWER BI</span><span>THINK · TEST · LEARN</span></div>
+        </aside>
+      </div>
+      <div className="credentials-line"><div><b>IIT (BHU)</b><span>Ceramic Engineering · 2026</span></div><div><b>HIGHTIDE</b><span>FinTech · Analyst Intern</span></div><div><b>MENTORQ PRO</b><span>EdTech · Co-founder experiment</span></div><div><b>INTERESTS</b><span>Product / Business / Finance</span></div></div>
+    </section>
+    <section className="page-shell section-block work-intro"><div className="section-top"><SectionHeading eyebrow="SELECTED WORK / 01" title="Questions worth investigating." description="A working archive of analytical projects. Each case study makes the question, method, assumptions and limitations visible."/><button className="text-link" onClick={() => navigate("/projects")}>VIEW ALL WORK <ArrowRight size={16}/></button></div><div className="project-grid">{projects.slice(0,3).map(p=><ProjectCard key={p.slug} project={p} navigate={navigate}/>)}</div></section>
+    <section className="feature-band"><div className="page-shell feature-inner"><div><p className="eyebrow">INTERACTIVE WORK / 02</p><h2>Explore the thinking.<br/><em>Not just the finished slide.</em></h2><p className="muted">Interactive dashboards and browser-native presentations—built to show how I structure a problem, inspect evidence and communicate a point of view.</p></div><div className="feature-actions"><Button onClick={() => navigate("/dashboards")}>Open dashboard <BarChart3 size={16}/></Button><Button variant="secondary" onClick={() => navigate("/presentations")}>Read the field notes <Presentation size={16}/></Button></div></div></section>
+    <section className="page-shell section-block"><div className="section-top"><SectionHeading eyebrow="BACKGROUND / 03" title="An unconventional route into analytics." description="Engineering trained me to think in systems. FinTech, product experiments and independent projects gave me places to apply that thinking."/><button className="text-link" onClick={() => navigate("/experience")}>FULL EXPERIENCE <ArrowRight size={16}/></button></div><div className="experience-preview"><div><span className="eyebrow">MAY — JUL 2025</span><h3>Business & Data Analyst Intern</h3><p>Hightide · FinTech</p><p className="muted">Trading tools, business analysis and dashboard-oriented reporting.</p></div><div><span className="eyebrow">PRODUCT EXPERIMENT</span><h3>Co-founder</h3><p>MentorQ Pro · EdTech</p><p className="muted">Early product thinking, customer problem exploration and demand validation.</p></div><div><span className="eyebrow">2022 — 2026</span><h3>B.Tech, Ceramic Engineering</h3><p>IIT (BHU), Varanasi</p><p className="muted">An engineering foundation with an interdisciplinary business lens.</p></div></div></section>
+    <section className="contact-band"><div className="page-shell contact-inner"><div><p className="eyebrow">OPEN TO THE RIGHT PROBLEM</p><h2>Let's make a better<br/><em>decision together.</em></h2></div><a className="button button-light" href="mailto:anuragparkhe7755@gmail.com">Start a conversation <ArrowUpRight size={16}/></a></div></section>
+  </>;
 }
 function Projects({ navigate }: { navigate: (path: string) => void }) {
   const [category, setCategory] = useState("All");
@@ -138,6 +163,15 @@ function About() {
 }
 function App() {
   const {route,navigate}=useRoute();
+  const [theme,setTheme] = useState<"dark"|"light">(() => {
+    const saved = window.localStorage.getItem("anurag-portfolio-theme");
+    return saved === "light" ? "light" : "dark";
+  });
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme;
+    window.localStorage.setItem("anurag-portfolio-theme", theme);
+  }, [theme]);
+  const toggleTheme = () => setTheme(current => current === "dark" ? "light" : "dark");
   const content=useMemo(()=>{
     if(route.path==="/") return <Home navigate={navigate}/>;
     if(route.path==="/projects") return <Projects navigate={navigate}/>;
@@ -149,6 +183,6 @@ function App() {
     if(route.path==="/about") return <About/>;
     return <main className="page-shell inner-page"><SectionHeading eyebrow="404 / NOT FOUND" title="This page doesn't exist."/><Button onClick={()=>navigate("/")}>Return home</Button></main>;
   },[route,navigate]);
-  return <div className="app"><Header path={route.path} navigate={navigate}/>{content}<Footer navigate={navigate}/></div>;
+  return <div className="app"><Header path={route.path} navigate={navigate} theme={theme} onToggleTheme={toggleTheme}/>{content}<Footer navigate={navigate}/></div>;
 }
 export default App;
