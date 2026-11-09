@@ -414,3 +414,15 @@ html,body{background:var(--paper);color:var(--ink)}body{font-family:"Manrope",sa
  .nav-link{width:100%;text-align:left;padding:13px 2px!important}
  .nav-link.active:after{left:0;right:auto;bottom:5px;width:22px}
 }
+
+
+/* Minimal hero: let typography and negative space do the work */
+.quiet-hero{grid-template-columns:minmax(0,1fr);min-height:650px;padding-top:90px;padding-bottom:88px}
+.quiet-hero-copy{max-width:900px;padding:0;animation:quietTextIn .9s cubic-bezier(.2,.7,.2,1) both}
+.quiet-hero h1{font-size:clamp(68px,8.5vw,112px);line-height:.98;letter-spacing:-.045em}
+.quiet-intro{max-width:500px;margin-top:30px}
+.quiet-meta{max-width:560px;margin-top:70px}
+.quiet-hero-space,.quiet-side-note{display:none!important}
+@keyframes quietTextIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:650px){.quiet-hero{min-height:0;padding-top:75px;padding-bottom:70px}.quiet-hero h1{font-size:clamp(54px,12.8vw,78px)}.quiet-meta{margin-top:48px}}
+@media(prefers-reduced-motion:reduce){.quiet-hero-copy{animation:none}}
