@@ -77,52 +77,48 @@ function ProjectCard({ project, navigate }: { project: Project; navigate: (path:
   return <article className="project-card"><button className="project-art" onClick={() => navigate(`/projects/${project.slug}`)} aria-label={`Open ${project.title}`}><div className={`art-pattern art-${project.visual}`}><span>{project.number}</span><div className="art-lines"><i/><i/><i/><i/></div><strong>{project.visualLabel}</strong></div><span className="card-open"><ArrowUpRight size={18}/></span></button><div className="project-meta"><span className="eyebrow">{project.category}</span><span className="project-status">{project.status}</span></div><h3>{project.title}</h3><p className="muted">{project.summary}</p><div className="tag-row">{project.tools.slice(0, 4).map(t => <Tag key={t}>{t}</Tag>)}</div><button className="text-link" onClick={() => navigate(`/projects/${project.slug}`)}>Explore case study <ArrowRight size={15}/></button></article>;
 }
 function Home({ navigate }: { navigate: (path: string) => void }) {
-  return <>
-    <section className="atelier-hero">
-      <div className="atelier-grid page-shell">
-        <div className="atelier-copy">
-          <div className="atelier-kicker"><span className="live-dot"/> AVAILABLE FOR ANALYTICS & BUSINESS ROLES <span className="kicker-index">01 / 04</span></div>
-          <p className="atelier-overline">ANURAG PARKHE <span>—</span> ANALYTICS / FINANCE / PRODUCT</p>
-          <h1>Curiosity,<br/>made <i>useful.</i></h1>
-          <p className="atelier-intro">I investigate business problems with data, build tools that make complexity easier to see, and turn findings into decisions.</p>
-          <div className="atelier-actions">
-            <Button onClick={() => navigate("/projects")}>Explore selected work <ArrowUpRight size={16}/></Button>
-            <a className="atelier-resume" href="/resume.pdf" target="_blank" rel="noreferrer">VIEW RÉSUMÉ <Download size={14}/></a>
-          </div>
-          <div className="atelier-indexline"><span>BASED IN INDIA</span><span>SQL · PYTHON · POWER BI</span><span>SCROLL TO EXPLORE ↓</span></div>
+  return <main className="quiet-home">
+    <section className="quiet-hero page-shell">
+      <div className="quiet-hero-copy">
+        <p className="quiet-kicker"><span/> ANURAG PARKHE <i>·</i> ANALYTICS & BUSINESS</p>
+        <h1>Turning complex<br/>questions into<br/><em>clear decisions.</em></h1>
+        <p className="quiet-intro">I use data, structured thinking and practical tools to understand business problems and find what matters.</p>
+        <div className="quiet-actions">
+          <Button onClick={() => navigate("/projects")}>Explore my work <ArrowUpRight size={16}/></Button>
+          <a href="/resume.pdf" target="_blank" rel="noreferrer">View résumé <Download size={15}/></a>
         </div>
-        <div className="orbit-stage" aria-label="Abstract animated three-dimensional data sculpture">
-          <div className="orbit-grain"/>
-          <div className="orbit-halo halo-one"/><div className="orbit-halo halo-two"/>
-          <div className="orbit-ring ring-a"/><div className="orbit-ring ring-b"/><div className="orbit-ring ring-c"/>
-          <div className="orbit-core"><div className="core-shine"/><span>AP</span></div>
-          <div className="orbit-node node-one"/><div className="orbit-node node-two"/><div className="orbit-node node-three"/>
-          <div className="orbit-label label-top">SIGNAL / 001</div><div className="orbit-label label-bottom">THINK IN SYSTEMS</div>
-          <div className="orbit-crosshair">✳</div>
-        </div>
+        <div className="quiet-meta"><span>BASED IN INDIA</span><span>SQL · PYTHON · POWER BI</span></div>
       </div>
-      <div className="atelier-marquee" aria-hidden="true"><div>DATA WITH CONTEXT <span>✳</span> BUSINESS WITH INTENT <span>✳</span> DECISIONS WITH EVIDENCE <span>✳</span> DATA WITH CONTEXT <span>✳</span> BUSINESS WITH INTENT <span>✳</span></div></div>
+      <div className="quiet-object-wrap" aria-label="A slowly rotating abstract three-dimensional form">
+        <div className="quiet-object-shadow"/>
+        <div className="quiet-object"><div className="quiet-object-highlight"/><span>AP</span></div>
+        <div className="quiet-orbit quiet-orbit-one"/><div className="quiet-orbit quiet-orbit-two"/>
+      </div>
+      <span className="quiet-side-note">DATA / PRODUCT / FINANCE</span>
     </section>
-    <section className="atelier-proof page-shell">
-      <div className="proof-heading"><span>01 — THE PRACTICE</span><p>A little about the work.</p></div>
-      <div className="proof-cell"><b>IIT (BHU)</b><span>Engineering foundation</span></div>
-      <div className="proof-cell"><b>Hightide</b><span>FinTech · Analyst internship</span></div>
-      <div className="proof-cell"><b>Cross-disciplinary</b><span>Markets / product / data</span></div>
-      <div className="proof-cell"><b>Tools</b><span>SQL / Python / Power BI</span></div>
-    </section>
-    <section className="atelier-work page-shell">
-      <div className="atelier-section-head"><div><span className="atelier-overline">02 — SELECTED WORK</span><h2>Work that asks<br/>better <i>questions.</i></h2></div><p>Explorations across markets, customer behaviour and business performance. Each case study shows the thinking, not just the output.</p></div>
-      <div className="project-grid atelier-project-grid">{projects.slice(0,3).map((p,i)=><div className="atelier-project-wrap" key={p.slug}><span className="atelier-project-number">0{i+1} / FEATURED</span><ProjectCard project={p} navigate={navigate}/></div>)}</div>
-      <button className="atelier-all-work" onClick={() => navigate("/projects")}>VIEW ALL PROJECTS <ArrowUpRight size={16}/></button>
-    </section>
-    <section className="atelier-lab">
-      <div className="page-shell atelier-lab-inner">
-        <div><span className="atelier-overline">03 — BEYOND THE NOTEBOOK</span><h2>Make the insight<br/><i>something you can use.</i></h2><p>Interactive dashboards and concise presentations that make analysis tangible.</p></div>
-        <div className="lab-links"><button onClick={() => navigate("/dashboards")}><span>01</span> Interactive dashboards <ArrowUpRight size={17}/></button><button onClick={() => navigate("/presentations")}><span>02</span> Research & presentations <ArrowUpRight size={17}/></button><button onClick={() => navigate("/experience")}><span>03</span> Experience & background <ArrowUpRight size={17}/></button></div>
+
+    <section className="quiet-selected page-shell">
+      <div className="quiet-section-top"><p className="quiet-label">SELECTED WORK</p><button className="quiet-view-all" onClick={() => navigate("/projects")}>View all projects <ArrowUpRight size={15}/></button></div>
+      <div className="quiet-project-list">
+        {projects.slice(0,3).map((p,i)=><button className="quiet-project-row" key={p.slug} onClick={() => navigate(`/projects/${p.slug}`)}>
+          <span className="quiet-project-index">0{i+1}</span><span className="quiet-project-name">{p.title}<small>{p.category} · {p.tools.slice(0,3).join(" / ")}</small></span><span className="quiet-project-arrow"><ArrowUpRight size={19}/></span>
+        </button>)}
       </div>
     </section>
-    <section className="atelier-contact page-shell"><span className="atelier-overline">04 — OPEN CONVERSATION</span><div className="atelier-contact-row"><h2>Have an interesting<br/><i>problem to solve?</i></h2><a href="mailto:anuragparkhe7755@gmail.com">LET'S TALK <ArrowUpRight size={19}/></a></div><div className="atelier-contact-foot"><span>ANURAG PARKHE © {new Date().getFullYear()}</span><span>BUILT WITH INTENTION, NOT TEMPLATES.</span></div></section>
-  </>;
+
+    <section className="quiet-about">
+      <div className="page-shell quiet-about-inner">
+        <p className="quiet-label">A LITTLE ABOUT ME</p>
+        <div><h2>Curious by nature.<br/><em>Practical by design.</em></h2><p>Engineering graduate from IIT (BHU), with experience in fintech analytics and a strong interest in markets, products and how businesses work.</p><button className="quiet-text-link" onClick={() => navigate("/experience")}>More about my experience <ArrowUpRight size={15}/></button></div>
+      </div>
+    </section>
+
+    <section className="quiet-contact page-shell">
+      <p className="quiet-label">HAVE A QUESTION OR AN OPPORTUNITY?</p>
+      <div><h2>Let’s make<br/><em>something useful.</em></h2><a href="mailto:anuragparkhe7755@gmail.com">Get in touch <ArrowUpRight size={18}/></a></div>
+      <footer><span>© {new Date().getFullYear()} ANURAG PARKHE</span><span><a href="https://www.linkedin.com/in/anuragparkhe" target="_blank" rel="noreferrer">LINKEDIN</a><a href="https://github.com/Anuragp7788" target="_blank" rel="noreferrer">GITHUB</a></span></footer>
+    </section>
+  </main>;
 }
 function Projects({ navigate }: { navigate: (path: string) => void }) {
   const [category, setCategory] = useState("All");
