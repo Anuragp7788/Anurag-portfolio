@@ -452,3 +452,38 @@ html,body{background:var(--paper);color:var(--ink)}body{font-family:"Manrope",sa
 :root[data-theme="light"] .quiet-actions .button{background:#252823;border-color:#252823;color:#fff}
 :root[data-theme="light"] .quiet-actions .button:hover{background:#927b55;border-color:#927b55}
 :root[data-theme="light"] .theme-toggle{border-color:#e5e4dd;color:#55594f}
+
+
+/* Final light-mode override: force a true white canvas across the full page */
+html[data-theme="light"],
+html[data-theme="light"] body,
+html[data-theme="light"] #root,
+html[data-theme="light"] .app,
+html[data-theme="light"] .quiet-home,
+html[data-theme="light"] .quiet-hero,
+html[data-theme="light"] .quiet-selected,
+html[data-theme="light"] .quiet-contact{
+ background-color:#fff!important;
+ color:#252823!important;
+}
+html[data-theme="light"] .quiet-about{background-color:#f8f8f5!important}
+html[data-theme="light"] .site-header{background:rgba(255,255,255,.96)!important;border-color:#e9e9e3!important}
+html[data-theme="light"] .quiet-label,
+html[data-theme="light"] .quiet-kicker,
+html[data-theme="light"] .quiet-meta,
+html[data-theme="light"] .quiet-intro,
+html[data-theme="light"] .quiet-project-name small,
+html[data-theme="light"] .quiet-contact footer{color:#777b73!important}
+html[data-theme="light"] .quiet-hero h1,
+html[data-theme="light"] .quiet-about h2,
+html[data-theme="light"] .quiet-contact h2,
+html[data-theme="light"] .quiet-project-name{color:#252823!important}
+html[data-theme="light"] .quiet-hero h1 em,
+html[data-theme="light"] .quiet-about h2 em,
+html[data-theme="light"] .quiet-contact h2 em{color:#927b55!important}
+html[data-theme="light"] .quiet-project-row{border-color:#e9e9e3!important;color:#252823!important}
+html[data-theme="light"] .quiet-actions .button{background:#252823!important;border-color:#252823!important;color:#fff!important}
+html[data-theme="light"] .quiet-actions>a,
+html[data-theme="light"] .quiet-view-all,
+html[data-theme="light"] .quiet-text-link,
+html[data-theme="light"] .quiet-contact>div>a{color:#927b55!important}
