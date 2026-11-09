@@ -78,14 +78,14 @@ function Home({ navigate, onOpenResume }: { navigate: (path: string) => void; on
   return <main className="quiet-home">
     <section className="quiet-hero page-shell">
       <div className="quiet-hero-copy">
-        <p className="quiet-kicker"><span/> ANURAG PARKHE <i>·</i> ANALYTICS & BUSINESS</p>
-        <h1>Turning complex<br/>questions into<br/><em>clear decisions.</em></h1>
-        <p className="quiet-intro">I use data, structured thinking and practical tools to understand business problems and find what matters.</p>
+        <p className="quiet-kicker"><span/> ANURAG PARKHE <i>·</i> DATA, BUSINESS & PRODUCT ANALYTICS</p>
+        <h1>I turn data into<br/><em>better business</em><br/>decisions.</h1>
+        <p className="quiet-intro">I combine SQL, Python and business thinking to investigate performance, uncover patterns and turn analysis into practical recommendations. IIT (BHU) graduate with hands-on FinTech analytics experience.</p>
         <div className="quiet-actions">
-          <Button onClick={() => navigate("/projects")}>Explore my work <ArrowUpRight size={16}/></Button>
+          <Button onClick={() => navigate("/projects")}>Explore selected work <ArrowUpRight size={16}/></Button>
           <button className="quiet-resume-link" onClick={onOpenResume}>View résumé <ArrowUpRight size={15}/></button>
         </div>
-        <div className="quiet-meta"><span>BASED IN INDIA</span><span>SQL · PYTHON · POWER BI</span></div>
+        <div className="quiet-meta"><span>OPEN TO DATA · BUSINESS · PRODUCT · FINANCE ANALYST ROLES</span><span>SQL · PYTHON · POWER BI</span></div>
       </div>
       <div className="quiet-hero-space" aria-hidden="true"><span>ANALYTICS</span><i/></div>
     </section>
