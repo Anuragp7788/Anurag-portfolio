@@ -29,8 +29,6 @@ function useRoute() {
 const nav = [
   { label: "Home", path: "/" },
   { label: "Projects", path: "/projects" },
-  { label: "Dashboards", path: "/dashboards" },
-  { label: "Presentations", path: "/presentations" },
   { label: "Experience", path: "/experience" },
   { label: "About", path: "/about" },
 ];
