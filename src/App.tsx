@@ -87,12 +87,7 @@ function Home({ navigate }: { navigate: (path: string) => void }) {
         </div>
         <div className="quiet-meta"><span>BASED IN INDIA</span><span>SQL · PYTHON · POWER BI</span></div>
       </div>
-      <div className="quiet-object-wrap" aria-label="A slowly rotating abstract three-dimensional form">
-        <div className="quiet-object-shadow"/>
-        <div className="quiet-object"><div className="quiet-object-highlight"/><span>AP</span></div>
-        <div className="quiet-orbit quiet-orbit-one"/><div className="quiet-orbit quiet-orbit-two"/>
-      </div>
-      <span className="quiet-side-note">DATA / PRODUCT / FINANCE</span>
+      <div className="quiet-hero-space" aria-hidden="true"><span>ANALYTICS</span><i/></div>
     </section>
 
     <section className="quiet-selected page-shell">
