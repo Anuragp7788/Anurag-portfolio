@@ -1,5 +1,5 @@
-import React, { useEffect, useMemo, useState } from "react";
-import { ArrowDownRight, ArrowLeft, ArrowRight, ArrowUpRight, BarChart3, BriefcaseBusiness, Check, ChevronDown, ChevronLeft, ChevronRight, Code2, Download, ExternalLink, FileText, Github, GraduationCap, Layers3, Linkedin, Mail, Menu, Presentation, Sparkles, Sun, Moon, X } from "lucide-react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
+import { ArrowDownRight, ArrowLeft, ArrowRight, ArrowUpRight, BarChart3, BriefcaseBusiness, Check, ChevronDown, ChevronLeft, ChevronRight, Code2, Download, ExternalLink, FileText, Github, GraduationCap, Layers3, Linkedin, Mail, Menu, Presentation, Sparkles, Sun, Moon, X, Maximize2 } from "lucide-react";
 import { projects, type Project } from "./data/projects";
 
 type Route = { path: string; params?: Record<string, string> };
@@ -74,7 +74,7 @@ function Footer({ navigate }: { navigate: (path: string) => void }) {
 function ProjectCard({ project, navigate }: { project: Project; navigate: (path: string) => void }) {
   return <article className="project-card"><button className="project-art" onClick={() => navigate(`/projects/${project.slug}`)} aria-label={`Open ${project.title}`}><div className={`art-pattern art-${project.visual}`}><span>{project.number}</span><div className="art-lines"><i/><i/><i/><i/></div><strong>{project.visualLabel}</strong></div><span className="card-open"><ArrowUpRight size={18}/></span></button><div className="project-meta"><span className="eyebrow">{project.category}</span><span className="project-status">{project.status}</span></div><h3>{project.title}</h3><p className="muted">{project.summary}</p><div className="tag-row">{project.tools.slice(0, 4).map(t => <Tag key={t}>{t}</Tag>)}</div><button className="text-link" onClick={() => navigate(`/projects/${project.slug}`)}>Explore case study <ArrowRight size={15}/></button></article>;
 }
-function Home({ navigate }: { navigate: (path: string) => void }) {
+function Home({ navigate, onOpenResume }: { navigate: (path: string) => void; onOpenResume: () => void }) {
   return <main className="quiet-home">
     <section className="quiet-hero page-shell">
       <div className="quiet-hero-copy">
@@ -83,7 +83,7 @@ function Home({ navigate }: { navigate: (path: string) => void }) {
         <p className="quiet-intro">I use data, structured thinking and practical tools to understand business problems and find what matters.</p>
         <div className="quiet-actions">
           <Button onClick={() => navigate("/projects")}>Explore my work <ArrowUpRight size={16}/></Button>
-          <a href="/resume.pdf" target="_blank" rel="noreferrer">View résumé <Download size={15}/></a>
+          <button className="quiet-resume-link" onClick={onOpenResume}>View résumé <ArrowUpRight size={15}/></button>
         </div>
         <div className="quiet-meta"><span>BASED IN INDIA</span><span>SQL · PYTHON · POWER BI</span></div>
       </div>
@@ -165,8 +165,28 @@ function About() {
   const skills=[["Analytics","SQL","Python","Pandas","NumPy","Excel","Power BI"],["Product & business","KPI design","Customer segmentation","Business analysis","Growth analysis","Experiment thinking"],["Finance & markets","Options & futures","Market structure","VWAP","Backtesting","Risk management"],["Ways of working","Problem framing","Stakeholder communication","Research","Reporting","Process improvement"]];
   return <main className="page-shell inner-page"><SectionHeading eyebrow="ABOUT / 01" title="An engineer's curiosity. An analyst's toolkit." description="I studied Ceramic Engineering at IIT (BHU), and built a parallel track in business, data and financial analysis."/><div className="about-layout"><img className="profile-image" src="/images/profile-photo.jpg" alt="Anurag Parkhe"/><div className="about-copy"><p>I enjoy understanding how businesses work: where customers experience friction, how products create value, how operations affect margins and how financial decisions should account for risk.</p><p>My experience spans a FinTech internship, an early-stage EdTech product experiment and independent analytical projects. I use Python, SQL, spreadsheets and visualisation to structure questions and communicate evidence.</p><p>I am interested in roles where analysis connects directly to a business decision—across product, business intelligence, finance and operations.</p><div className="about-links"><a href="https://www.linkedin.com/in/anuragparkhe" target="_blank" rel="noreferrer"><Linkedin size={17}/> LinkedIn <ExternalLink size={13}/></a><a href="https://github.com/Anuragp7788" target="_blank" rel="noreferrer"><Github size={17}/> GitHub <ExternalLink size={13}/></a></div></div></div><section className="skills-section"><p className="eyebrow">CAPABILITIES</p><h2>Tools are useful. Thinking is the skill.</h2><div className="skills-grid">{skills.map(([name,...items])=><div className="skill-card" key={name}><h3>{name}</h3><div className="tag-row">{items.map(x=><Tag key={x}>{x}</Tag>)}</div></div>)}</div></section></main>;
 }
+
+function ResumeViewer({ onClose }: { onClose: () => void }) {
+  const frameRef = useRef<HTMLIFrameElement>(null);
+  useEffect(() => {
+    const onKeyDown = (event: KeyboardEvent) => { if (event.key === "Escape") onClose(); };
+    window.addEventListener("keydown", onKeyDown);
+    document.body.style.overflow = "hidden";
+    return () => { window.removeEventListener("keydown", onKeyDown); document.body.style.overflow = ""; };
+  }, [onClose]);
+  const openFullscreen = () => { const frame = frameRef.current; if (frame?.requestFullscreen) frame.requestFullscreen(); };
+  return <div className="resume-overlay" role="dialog" aria-modal="true" aria-label="Résumé viewer" onMouseDown={(event) => { if (event.target === event.currentTarget) onClose(); }}>
+    <section className="resume-window">
+      <header className="resume-toolbar"><div><FileText size={17}/><span>ANURAG PARKHE <small>RÉSUMÉ</small></span></div><div className="resume-toolbar-actions"><a href="/resume.pdf" download="Anurag-Parkhe-Resume.pdf"><Download size={15}/> Download</a><button onClick={openFullscreen} aria-label="Open résumé fullscreen" title="Fullscreen"><Maximize2 size={16}/></button><button onClick={onClose} aria-label="Close résumé"><X size={18}/></button></div></header>
+      <iframe ref={frameRef} className="resume-frame" src="/resume.pdf#toolbar=1&navpanes=0" title="Anurag Parkhe résumé"/>
+    </section>
+  </div>;
+}
+
 function App() {
   const {route,navigate}=useRoute();
+  const [resumeOpen,setResumeOpen] = useState(false);
+  const closeResume = () => setResumeOpen(false);
   const [theme,setTheme] = useState<"dark"|"light">(() => {
     const saved = window.localStorage.getItem("anurag-portfolio-theme");
     return saved === "light" ? "light" : "dark";
@@ -177,7 +197,7 @@ function App() {
   }, [theme]);
   const toggleTheme = () => setTheme(current => current === "dark" ? "light" : "dark");
   const content=useMemo(()=>{
-    if(route.path==="/") return <Home navigate={navigate}/>;
+    if(route.path==="/") return <Home navigate={navigate} onOpenResume={() => setResumeOpen(true)}/>;
     if(route.path==="/projects") return <Projects navigate={navigate}/>;
     if(route.path==="/projects/:slug") return <ProjectDetail slug={route.params?.slug||""} navigate={navigate}/>;
     if(route.path==="/dashboards") return <Dashboard/>;
@@ -187,6 +207,6 @@ function App() {
     if(route.path==="/about") return <About/>;
     return <main className="page-shell inner-page"><SectionHeading eyebrow="404 / NOT FOUND" title="This page doesn't exist."/><Button onClick={()=>navigate("/")}>Return home</Button></main>;
   },[route,navigate]);
-  return <div className="app"><Header path={route.path} navigate={navigate} theme={theme} onToggleTheme={toggleTheme}/>{content}<Footer navigate={navigate}/></div>;
+  return <div className="app"><Header path={route.path} navigate={navigate} theme={theme} onToggleTheme={toggleTheme}/>{content}<Footer navigate={navigate}/>{resumeOpen && <ResumeViewer onClose={closeResume}/>}</div>;
 }
 export default App;
