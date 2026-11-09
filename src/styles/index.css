@@ -542,3 +542,11 @@ html[data-theme="light"] .quiet-contact>div>a{color:#927b55!important}
 .services-disclaimer{max-width:760px;margin:18px 0 0;color:var(--muted);font:10px/1.8 "Manrope",sans-serif}
 @media(max-width:850px){.services-grid{grid-template-columns:1fr 1fr}.service-card:last-child{grid-column:1/-1}}
 @media(max-width:600px){.services-grid{grid-template-columns:1fr}.service-card:last-child{grid-column:auto}.service-card{min-height:0;padding:23px 20px}.services-cta{display:block;margin-top:60px}.services-cta>a{margin-top:25px}.work-shortcuts{gap:8px}.work-shortcuts button{font-size:10px;padding:10px}}
+
+
+/* Full-time search is the primary callout; freelance remains a secondary path */
+.quiet-opportunity-note{margin:15px 0 0;color:var(--muted);font:10px/1.7 "Manrope",sans-serif;letter-spacing:.015em}
+.quiet-contact-actions{display:flex;flex-direction:column;align-items:flex-start;gap:18px}
+.quiet-contact-actions a{display:inline-flex;align-items:center;gap:10px;color:var(--accent);border-bottom:1px solid var(--accent);padding-bottom:9px;font-size:12px}
+.quiet-contact-actions a:first-child{color:var(--ink);border-color:var(--ink)}
+@media(max-width:650px){.quiet-contact-actions{margin-top:28px;gap:17px}}
