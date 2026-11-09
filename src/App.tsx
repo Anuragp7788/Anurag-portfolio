@@ -1,5 +1,5 @@
-import React, { useEffect, useMemo, useState } from "react";
-import { ArrowDownRight, ArrowLeft, ArrowRight, ArrowUpRight, BarChart3, BriefcaseBusiness, Check, ChevronDown, ChevronLeft, ChevronRight, Code2, Download, ExternalLink, FileText, Github, GraduationCap, Layers3, Linkedin, Mail, Menu, Presentation, Sparkles, X } from "lucide-react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
+import { ArrowDownRight, ArrowLeft, ArrowRight, ArrowUpRight, BarChart3, BriefcaseBusiness, Check, ChevronDown, ChevronLeft, ChevronRight, Code2, Download, ExternalLink, FileText, Github, GraduationCap, Layers3, Linkedin, Mail, Menu, Presentation, Sparkles, Sun, Moon, X, Maximize2 } from "lucide-react";
 import { projects, type Project } from "./data/projects";
 
 type Route = { path: string; params?: Record<string, string> };
@@ -29,8 +29,7 @@ function useRoute() {
 const nav = [
   { label: "Home", path: "/" },
   { label: "Projects", path: "/projects" },
-  { label: "Dashboards", path: "/dashboards" },
-  { label: "Presentations", path: "/presentations" },
+  { label: "Services", path: "/services" },
   { label: "Experience", path: "/experience" },
   { label: "About", path: "/about" },
 ];
@@ -62,12 +61,12 @@ const SectionHeading = ({ eyebrow, title, description }: { eyebrow: string; titl
 );
 const Tag = ({ children }: { children: React.ReactNode }) => <span className="tag">{children}</span>;
 
-function Header({ path, navigate }: { path: string; navigate: (path: string) => void }) {
+function Header({ path, navigate, theme, onToggleTheme }: { path: string; navigate: (path: string) => void; theme: "dark" | "light"; onToggleTheme: () => void }) {
   const [open, setOpen] = useState(false);
   return <header className="site-header"><div className="nav-wrap">
-    <button className="wordmark" onClick={() => navigate("/")} aria-label="Go to homepage"><span className="wordmark-mark">AP</span><span>ANURAG PARKHE<small>BUSINESS · DATA · FINANCE</small></span></button>
+    <button className="wordmark" onClick={() => navigate("/")} aria-label="Go to homepage"><span className="wordmark-mark">AP<span>·</span></span><span className="wordmark-copy"><strong className="wordmark-name">Anurag Parkhe</strong><small>INDEPENDENT ANALYTICS PRACTICE</small></span></button>
     <nav className={open ? "nav-links nav-open" : "nav-links"}>{nav.map(item => <button key={item.path} className={path === item.path || (item.path === "/projects" && path.startsWith("/projects")) ? "nav-link active" : "nav-link"} onClick={() => { navigate(item.path); setOpen(false); }}>{item.label}</button>)}</nav>
-    <div className="nav-actions"><a className="nav-contact" href="mailto:anuragparkhe7755@gmail.com">Let's talk <ArrowUpRight size={15}/></a><button className="mobile-toggle" onClick={() => setOpen(!open)} aria-label="Toggle navigation">{open ? <X/> : <Menu/>}</button></div>
+    <div className="nav-actions"><button className="theme-toggle" onClick={onToggleTheme} aria-label={theme === "dark" ? "Switch to light theme" : "Switch to dark theme"} title={theme === "dark" ? "Switch to light theme" : "Switch to dark theme"}>{theme === "dark" ? <Sun size={16}/> : <Moon size={16}/>}<span>{theme === "dark" ? "LIGHT" : "DARK"}</span></button><a className="nav-contact" href="mailto:anuragparkhe7755@gmail.com">LET'S TALK <ArrowUpRight size={14}/></a><button className="mobile-toggle" onClick={() => setOpen(!open)} aria-label="Toggle navigation">{open ? <X/> : <Menu/>}</button></div>
   </div></header>;
 }
 function Footer({ navigate }: { navigate: (path: string) => void }) {
@@ -76,24 +75,55 @@ function Footer({ navigate }: { navigate: (path: string) => void }) {
 function ProjectCard({ project, navigate }: { project: Project; navigate: (path: string) => void }) {
   return <article className="project-card"><button className="project-art" onClick={() => navigate(`/projects/${project.slug}`)} aria-label={`Open ${project.title}`}><div className={`art-pattern art-${project.visual}`}><span>{project.number}</span><div className="art-lines"><i/><i/><i/><i/></div><strong>{project.visualLabel}</strong></div><span className="card-open"><ArrowUpRight size={18}/></span></button><div className="project-meta"><span className="eyebrow">{project.category}</span><span className="project-status">{project.status}</span></div><h3>{project.title}</h3><p className="muted">{project.summary}</p><div className="tag-row">{project.tools.slice(0, 4).map(t => <Tag key={t}>{t}</Tag>)}</div><button className="text-link" onClick={() => navigate(`/projects/${project.slug}`)}>Explore case study <ArrowRight size={15}/></button></article>;
 }
-function Home({ navigate }: { navigate: (path: string) => void }) {
-  return <><section className="hero page-shell"><div className="hero-copy"><div className="availability"><span/> OPEN TO ANALYTICS & BUSINESS OPPORTUNITIES</div><p className="eyebrow">HELLO, I'M ANURAG PARKHE</p><h1>Turning business questions into <em>clear decisions.</em></h1><p className="hero-sub">I work across data, finance and product—using structured analysis to understand problems, uncover patterns and communicate what to do next.</p><div className="hero-actions"><Button onClick={() => navigate("/projects")}>Explore my work <ArrowUpRight size={17}/></Button><a className="button button-secondary" href="/resume.pdf" target="_blank" rel="noreferrer"><Download size={16}/> View resume</a></div><div className="hero-proof"><div><strong>IIT (BHU)</strong><span>Ceramic Engineering · 2026</span></div><div><strong>FinTech</strong><span>Business & Data Analyst Intern</span></div><div><strong>3+ domains</strong><span>Business · Data · Markets</span></div></div></div><div className="hero-visual"><div className="visual-top"><span>ANALYTICAL APPROACH</span><span>01 — 04</span></div><div className="visual-question">A better question<br/>leads to a better <em>decision.</em></div><div className="visual-flow">{["Frame the problem","Measure what matters","Find the signal","Recommend action"].map((x,i)=><div key={x}><span>0{i+1}</span>{x}<ArrowUpRight size={15}/></div>)}</div><div className="visual-foot"><span>PYTHON / SQL / POWER BI</span><span>THINK · TEST · LEARN</span></div></div></section>
-  <section className="strip"><div className="page-shell strip-inner"><span>AREAS OF INTEREST</span>{["Product analytics","Business intelligence","Financial analysis","Growth & operations"].map(x=><b key={x}>{x}</b>)}</div></section>
-  <section className="page-shell section-block"><div className="section-top"><SectionHeading eyebrow="SELECTED WORK / 01" title="Analysis with a business point of view." description="A selection of analytical projects and problem-solving work. Open each case study to explore the question, method and limitations."/><button className="text-link" onClick={() => navigate("/projects")}>All projects <ArrowRight size={16}/></button></div><div className="project-grid">{projects.slice(0,3).map(p=><ProjectCard key={p.slug} project={p} navigate={navigate}/>)}</div></section>
-  <section className="feature-band"><div className="page-shell feature-inner"><div><p className="eyebrow">INTERACTIVE WORK / 02</p><h2>Don't just read about the work.<br/><em>Explore it in the browser.</em></h2><p className="muted">Open interactive dashboards and presentation-style walkthroughs directly on this site—no external viewer required.</p></div><div className="feature-actions"><Button onClick={() => navigate("/dashboards")}>Explore dashboards <BarChart3 size={17}/></Button><Button variant="secondary" onClick={() => navigate("/presentations")}>View presentations <Presentation size={17}/></Button></div></div></section>
-  <section className="page-shell section-block"><SectionHeading eyebrow="EXPERIENCE / 03" title="A mix of analytical and entrepreneurial experience."/><div className="experience-preview"><div><span className="eyebrow">MAY — JUL 2025</span><h3>Business & Data Analyst Intern</h3><p>Hightide · FinTech</p><p className="muted">Worked with trading tools, business data and dashboard-oriented analysis.</p></div><div><span className="eyebrow">PRODUCT EXPERIMENT</span><h3>Co-founder</h3><p>MentorQ Pro · EdTech</p><p className="muted">Explored a mentoring product, customer acquisition and early demand validation.</p></div><div><span className="eyebrow">EDUCATION</span><h3>B.Tech, Ceramic Engineering</h3><p>IIT (BHU), Varanasi · 2026</p><p className="muted">Engineering foundation with an interdisciplinary interest in business and analytics.</p></div></div><button className="text-link" onClick={() => navigate("/experience")}>More about my experience <ArrowRight size={16}/></button></section>
-  <section className="contact-band"><div className="page-shell contact-inner"><div><p className="eyebrow">HAVE A BUSINESS QUESTION?</p><h2>Let's make the next<br/><em>decision clearer.</em></h2></div><a className="button button-light" href="mailto:anuragparkhe7755@gmail.com">Get in touch <ArrowUpRight size={17}/></a></div></section></>;
+function Home({ navigate, onOpenResume }: { navigate: (path: string) => void; onOpenResume: () => void }) {
+  return <main className="quiet-home">
+    <section className="quiet-hero page-shell">
+      <div className="quiet-hero-copy">
+        <p className="quiet-kicker"><span/> ANURAG PARKHE <i>·</i> DATA & BUSINESS ANALYTICS</p>
+        <h1>Making data<br/>useful for<br/><em>business decisions.</em></h1>
+        <p className="quiet-intro">I’m an IIT (BHU) graduate with hands-on FinTech analytics experience. I use SQL, Python and visualisation to understand business performance, explore customer and market behaviour, and turn findings into clear, actionable recommendations.</p>
+        <div className="quiet-actions">
+          <Button onClick={() => navigate("/projects")}>Explore my work <ArrowUpRight size={16}/></Button>
+          <button className="quiet-resume-link" onClick={onOpenResume}>View résumé <ArrowUpRight size={15}/></button>
+        </div>
+        <p className="quiet-opportunity-note">Open to full-time roles · Also available for selected freelance projects</p>
+        <div className="quiet-meta"><span>OPEN TO BUSINESS · DATA · OPERATIONS ROLES</span><span>SQL · PYTHON · POWER BI</span></div>
+      </div>
+      <div className="quiet-hero-space" aria-hidden="true"><span>ANALYTICS</span><i/></div>
+    </section>
+
+    <section className="quiet-selected page-shell">
+      <div className="quiet-section-top"><p className="quiet-label">SELECTED WORK</p><button className="quiet-view-all" onClick={() => navigate("/projects")}>View all projects <ArrowUpRight size={15}/></button></div>
+      <div className="quiet-project-list">
+        {projects.slice(0,3).map((p,i)=><button className="quiet-project-row" key={p.slug} onClick={() => navigate(`/projects/${p.slug}`)}>
+          <span className="quiet-project-index">0{i+1}</span><span className="quiet-project-name">{p.title}<small>{p.category} · {p.tools.slice(0,3).join(" / ")}</small></span><span className="quiet-project-arrow"><ArrowUpRight size={19}/></span>
+        </button>)}
+      </div>
+    </section>
+
+    <section className="quiet-about">
+      <div className="page-shell quiet-about-inner">
+        <p className="quiet-label">A LITTLE ABOUT ME</p>
+        <div><h2>Curious about the problem.<br/><em>Focused on the evidence.</em></h2><p>My background spans engineering, FinTech and independent analytics projects. I’m interested in how customers behave, how products perform and how better analysis can help teams make sharper decisions. I’m also exploring AI and workflow automation to make business processes more efficient.</p><button className="quiet-text-link" onClick={() => navigate("/about")}>More about me <ArrowUpRight size={15}/></button></div>
+      </div>
+    </section>
+
+    <section className="quiet-contact page-shell">
+      <p className="quiet-label">CAREER & PROJECT ENQUIRIES</p>
+      <div><h2>Open to the right<br/><em>opportunity.</em></h2><div className="quiet-contact-actions"><a href="mailto:anuragparkhe7755@gmail.com?subject=Full-time%20opportunity">Discuss a full-time role <ArrowUpRight size={18}/></a><a href="mailto:anuragparkhe7755@gmail.com?subject=Freelance%20project">Discuss a freelance project <ArrowUpRight size={18}/></a></div></div>
+    </section>
+  </main>;
 }
 function Projects({ navigate }: { navigate: (path: string) => void }) {
   const [category, setCategory] = useState("All");
   const categories = ["All", ...Array.from(new Set(projects.map(p => p.category)))];
   const filtered = category === "All" ? projects : projects.filter(p => p.category === category);
-  return <main className="page-shell inner-page"><SectionHeading eyebrow="PROJECT LIBRARY / 01" title="Selected analytical work." description="Each case study explains the problem, approach, tools and what can—and cannot—be concluded from the work."/><div className="filter-row">{categories.map(c=><button key={c} className={category===c?"filter active":"filter"} onClick={()=>setCategory(c)}>{c}</button>)}</div><div className="project-grid">{filtered.map(p=><ProjectCard key={p.slug} project={p} navigate={navigate}/>)}</div></main>;
+  return <main className="page-shell inner-page"><SectionHeading eyebrow="PROJECT LIBRARY / 01" title="Analysis built around real questions." description="Independent case studies across customer behaviour, business intelligence and financial markets. Each explains the question, method, interpretation and limitations—without inventing business impact."/><div className="work-shortcuts"><button onClick={()=>navigate("/dashboards")}><BarChart3 size={17}/> Interactive dashboard <ArrowUpRight size={14}/></button><button onClick={()=>navigate("/presentations")}><Presentation size={17}/> Analytical presentations <ArrowUpRight size={14}/></button></div><div className="filter-row">{categories.map(c=><button key={c} className={category===c?"filter active":"filter"} onClick={()=>setCategory(c)}>{c}</button>)}</div><div className="project-grid">{filtered.map(p=><ProjectCard key={p.slug} project={p} navigate={navigate}/>)}</div></main>;
 }
 function ProjectDetail({ slug, navigate }: { slug: string; navigate: (path: string) => void }) {
   const p = projects.find(x => x.slug === slug);
   if (!p) return <main className="page-shell inner-page"><h1>Project not found</h1><Button onClick={() => navigate("/projects")}>Back to projects</Button></main>;
-  return <main className="page-shell inner-page"><button className="back-link" onClick={() => navigate("/projects")}><ArrowLeft size={16}/> All projects</button><div className="case-hero"><p className="eyebrow">{p.category} · CASE STUDY</p><h1>{p.title}</h1><p className="lead muted">{p.summary}</p><div className="tag-row">{p.tools.map(t=><Tag key={t}>{t}</Tag>)}</div><div className={`case-art art-pattern art-${p.visual}`}><span>{p.number}</span><div className="art-lines"><i/><i/><i/><i/></div><strong>{p.visualLabel}</strong></div></div><div className="case-grid"><aside className="case-aside"><span className="eyebrow">PROJECT NOTES</span><p><b>Status</b><br/>{p.status}</p><p><b>Tools</b><br/>{p.tools.join(" · ")}</p><p><b>Evidence</b><br/>See repository for source materials and reproducibility.</p></aside><div className="case-content"><section><p className="eyebrow">01 / BUSINESS QUESTION</p><h2>{p.problem}</h2><p>{p.context}</p></section><section><p className="eyebrow">02 / APPROACH</p><h2>How the analysis is structured</h2><ul className="rich-list">{p.approach.map(x=><li key={x}><Check size={17}/>{x}</li>)}</ul></section><section><p className="eyebrow">03 / WHAT TO LOOK FOR</p><h2>Interpretation and limitations</h2><p>{p.takeaway}</p><div className="note"><Sparkles size={18}/><p>{p.caveat}</p></div></section><section><p className="eyebrow">04 / NEXT ITERATION</p><h2>How I would take it further</h2><ul className="rich-list">{p.nextSteps.map(x=><li key={x}><ArrowUpRight size={17}/>{x}</li>)}</ul></section></div></div><div className="case-next"><span>CONTINUE EXPLORING</span><Button onClick={() => navigate("/dashboards")}>Open interactive dashboards <ArrowRight size={16}/></Button></div></main>;
+  return <main className="page-shell inner-page"><button className="back-link" onClick={() => navigate("/projects")}><ArrowLeft size={16}/> All projects</button><div className="case-hero"><p className="eyebrow">{p.category} · CASE STUDY</p><h1>{p.title}</h1><p className="lead muted">{p.summary}</p><div className="tag-row">{p.tools.map(t=><Tag key={t}>{t}</Tag>)}</div><div className={`case-art art-pattern art-${p.visual}`}><span>{p.number}</span><div className="art-lines"><i/><i/><i/><i/></div><strong>{p.visualLabel}</strong></div></div><div className="case-grid"><aside className="case-aside"><span className="eyebrow">PROJECT NOTES</span><p><b>Status</b><br/>{p.status}</p><p><b>Tools</b><br/>{p.tools.join(" · ")}</p><p><b>Evidence & scope</b><br/>Independent project. Review the methodology, interpretation and limitations below; verified outputs and code links should accompany future published versions.</p></aside><div className="case-content"><section><p className="eyebrow">01 / BUSINESS QUESTION</p><h2>{p.problem}</h2><p>{p.context}</p></section><section><p className="eyebrow">02 / APPROACH</p><h2>How the analysis is structured</h2><ul className="rich-list">{p.approach.map(x=><li key={x}><Check size={17}/>{x}</li>)}</ul></section><section><p className="eyebrow">03 / WHAT TO LOOK FOR</p><h2>Interpretation and limitations</h2><p>{p.takeaway}</p><div className="note"><Sparkles size={18}/><p>{p.caveat}</p></div></section><section><p className="eyebrow">04 / NEXT ITERATION</p><h2>How I would take it further</h2><ul className="rich-list">{p.nextSteps.map(x=><li key={x}><ArrowUpRight size={17}/>{x}</li>)}</ul></section></div></div><div className="case-next"><span>CONTINUE EXPLORING</span><Button onClick={() => navigate("/dashboards")}>Open interactive dashboards <ArrowRight size={16}/></Button></div></main>;
 }
 
 const dashboardSeries = {
@@ -128,20 +158,58 @@ function SlideDeck({ slug, navigate }: { slug: string; navigate: (path: string) 
   if(!deck) return <main className="page-shell inner-page"><h1>Presentation not found</h1><Button onClick={()=>navigate("/presentations")}>Back to presentations</Button></main>;
   return <main className="page-shell inner-page deck-page"><div className="deck-toolbar"><button className="back-link" onClick={()=>navigate("/presentations")}><ArrowLeft size={16}/> All presentations</button><div><span>{deck.title}</span><button className="deck-overview" onClick={()=>setOverview(!overview)}>{overview?"Close overview":"Slide overview"}</button></div></div>{overview?<div className="slide-overview">{deck.slides.map((s,i)=><button key={i} className={index===i?"slide-thumb selected":"slide-thumb"} onClick={()=>{setIndex(i);setOverview(false)}}><span>SLIDE {String(i+1).padStart(2,"0")}</span><b>{s.title}</b><small>{s.eyebrow}</small></button>)}</div>:<section className="slide-stage"><div className="slide-content"><div className="slide-topline"><span>ANURAG PARKHE / FIELD NOTES</span><span>{String(index+1).padStart(2,"0")} — {String(deck.slides.length).padStart(2,"0")}</span></div><p className="eyebrow">{slide?.eyebrow}</p><h1>{slide?.title}</h1><p className="slide-body">{slide?.body}</p><ul>{slide?.bullets.map(b=><li key={b}><span/> {b}</li>)}</ul><div className="slide-footer"><span>{deck.kind.toUpperCase()}</span><span>USE ← → TO NAVIGATE</span></div></div></section>}<div className="deck-controls"><button className="deck-arrow" disabled={index===0} onClick={()=>setIndex(i=>Math.max(0,i-1))}><ChevronLeft/> Previous</button><div className="deck-progress">{deck.slides.map((_,i)=><button aria-label={`Go to slide ${i+1}`} key={i} onClick={()=>setIndex(i)} className={i===index?"progress-dot current":"progress-dot"}/>)}</div><span className="deck-count">{index+1} / {deck.slides.length}</span><button className="deck-arrow" disabled={index===deck.slides.length-1} onClick={()=>setIndex(i=>Math.min(deck.slides.length-1,i+1))}>Next <ChevronRight/></button></div><p className="deck-hint">Tip: use your left and right arrow keys to navigate the presentation.</p></main>;
 }
+function Services() {
+  const offers=[
+    {n:"01",title:"Business & data analysis",desc:"Turn scattered data into a clear view of performance and practical next steps.",items:["Excel / SQL data analysis","KPI tracking and reporting","Power BI dashboard development","Customer, sales and operations analysis"]},
+    {n:"02",title:"Research & decision support",desc:"Structure an unclear business question, gather evidence and communicate what it means.",items:["Market and competitor research","Business and industry analysis","Customer and product research","Insight summaries and presentations"]},
+    {n:"03",title:"Workflow automation & applied AI",desc:"Explore ways to reduce repetitive work by connecting business tools and data workflows.",items:["n8n workflow prototypes","API and webhook integrations","Document and data-processing workflows","LLM-assisted workflow prototypes"]}
+  ];
+  return <main className="page-shell inner-page"><SectionHeading eyebrow="INDEPENDENT WORK / SERVICES" title="Practical help for business problems." description="Alongside my search for a full-time role, I’m open to selected freelance and project-based work across analytics, research and workflow automation."/><div className="services-note"><span className="eyebrow">HOW I WORK</span><p>Start with the business question, agree on the deliverable and scope, then share progress and document assumptions. I only claim outcomes that can be verified.</p></div><div className="services-grid">{offers.map(x=><article className="service-card" key={x.n}><span className="eyebrow">{x.n} / SERVICE AREA</span><h2>{x.title}</h2><p>{x.desc}</p><ul className="rich-list">{x.items.map(item=><li key={item}><Check size={16}/>{item}</li>)}</ul></article>)}</div><div className="services-cta"><div><span className="eyebrow">LOOKING FOR A FULL-TIME TEAM MEMBER?</span><h2>I’m open to the right<br/><em>long-term opportunity.</em></h2></div><a href="mailto:anuragparkhe7755@gmail.com?subject=Full-time%20opportunity">Discuss a role <ArrowUpRight size={17}/></a></div><p className="services-disclaimer">Independent services and developing capabilities are presented transparently. AI automation work is currently an area of active practice; production deployments and client results will be added only when completed and verified.</p></main>;
+}
 function Experience({ navigate }: { navigate: (path: string) => void }) {
-  const items=[{date:"MAY — JUL 2025",role:"Business & Data Analyst Intern",company:"Hightide · FinTech",points:["Worked around options-trading tools and analytical workflows.","Contributed to business and data analysis, dashboard-oriented reporting and decision support."]},{date:"PRODUCT EXPERIMENT",role:"Co-founder",company:"MentorQ Pro · EdTech",points:["Explored a mentoring platform and its customer problem.","Worked on product thinking, demand validation and acquisition experiments."]},{date:"AUG 2024 — MAR 2025",role:"Senior Induction Mentor",company:"Student Counselling Services · IIT (BHU)",points:["Supported onboarding and mentoring for incoming students.","Helped structure communication and student support activities."]},{date:"JUL — OCT 2023",role:"Marketing Executive",company:"Spardha · IIT (BHU)",points:["Contributed to sponsorship outreach and partnership development.","Worked with a team on event marketing and external communication."]}];
+  const items=[{date:"MAY — JUL 2025",role:"Business & Data Analyst Intern",company:"Hightide · FinTech",points:["Worked on business and data analysis tasks related to options-trading tools and workflows.","Contributed to dashboards and reporting to communicate analytical information and support decisions."]},{date:"EARLY-STAGE PRODUCT EXPERIMENT",role:"Co-founder",company:"MentorQ Pro · EdTech",points:["Co-founded an early-stage EdTech initiative focused on mentoring and learner support.","Explored the customer problem, product direction and early demand-generation ideas."]},{date:"AUG 2024 — MAR 2025",role:"Senior Induction Mentor",company:"Student Counselling Services · IIT (BHU)",points:["Supported onboarding and mentoring for incoming students.","Helped coordinate communication and student support activities."]},{date:"JUL — OCT 2023",role:"Marketing Executive",company:"Spardha · IIT (BHU)",points:["Contributed to sponsorship outreach and partnership development.","Collaborated with the team on event marketing and external communication."]}];
   return <main className="page-shell inner-page"><SectionHeading eyebrow="EXPERIENCE / 01" title="Where I've learned by doing." description="A combination of analytical work, product experimentation and team responsibilities."/><div className="timeline">{items.map((x,i)=><article className="timeline-item" key={x.company}><div className="timeline-date">{x.date}</div><div className="timeline-content"><span className="eyebrow">0{i+1}</span><h2>{x.role}</h2><h3>{x.company}</h3><ul className="rich-list">{x.points.map(p=><li key={p}><Check size={17}/>{p}</li>)}</ul></div></article>)}</div><div className="education-card"><GraduationCap size={26}/><div><span className="eyebrow">EDUCATION</span><h2>B.Tech in Ceramic Engineering</h2><p>IIT (BHU), Varanasi · 2022–2026</p></div></div><button className="text-link" onClick={()=>navigate("/about")}>Read more about my approach <ArrowRight size={16}/></button></main>;
 }
 function About() {
-  const skills=[["Analytics","SQL","Python","Pandas","NumPy","Excel","Power BI"],["Product & business","KPI design","Customer segmentation","Business analysis","Growth analysis","Experiment thinking"],["Finance & markets","Options & futures","Market structure","VWAP","Backtesting","Risk management"],["Ways of working","Problem framing","Stakeholder communication","Research","Reporting","Process improvement"]];
-  return <main className="page-shell inner-page"><SectionHeading eyebrow="ABOUT / 01" title="An engineer's curiosity. An analyst's toolkit." description="I studied Ceramic Engineering at IIT (BHU), and built a parallel track in business, data and financial analysis."/><div className="about-layout"><img className="profile-image" src="/images/profile-photo.jpg" alt="Anurag Parkhe"/><div className="about-copy"><p>I enjoy understanding how businesses work: where customers experience friction, how products create value, how operations affect margins and how financial decisions should account for risk.</p><p>My experience spans a FinTech internship, an early-stage EdTech product experiment and independent analytical projects. I use Python, SQL, spreadsheets and visualisation to structure questions and communicate evidence.</p><p>I am interested in roles where analysis connects directly to a business decision—across product, business intelligence, finance and operations.</p><div className="about-links"><a href="https://www.linkedin.com/in/anuragparkhe" target="_blank" rel="noreferrer"><Linkedin size={17}/> LinkedIn <ExternalLink size={13}/></a><a href="https://github.com/Anuragp7788" target="_blank" rel="noreferrer"><Github size={17}/> GitHub <ExternalLink size={13}/></a></div></div></div><section className="skills-section"><p className="eyebrow">CAPABILITIES</p><h2>Tools are useful. Thinking is the skill.</h2><div className="skills-grid">{skills.map(([name,...items])=><div className="skill-card" key={name}><h3>{name}</h3><div className="tag-row">{items.map(x=><Tag key={x}>{x}</Tag>)}</div></div>)}</div></section></main>;
+  const skills=[["Data & BI","SQL","Python","Pandas","NumPy","Excel","Power BI","Data visualisation"],["Business & product analysis","Business analysis","KPI analysis","Customer segmentation","Product metrics","Growth analysis","Research"],["Finance & markets","Options & futures","Market structure","VWAP","Strategy backtesting","Risk analysis"],["Automation & AI · Developing","n8n","Docker","REST APIs","Webhooks","LLM workflow concepts","Ollama / local LLMs"],["Professional strengths","Problem framing","Structured research","Analytical communication","Reporting","Process improvement"]];
+  return <main className="page-shell inner-page"><SectionHeading eyebrow="ABOUT / 01" title="Business questions. Analytical thinking." description="I’m a 2026 B.Tech graduate from IIT (BHU), with a background in engineering, FinTech experience and independent work across business, product and financial analytics."/><div className="about-layout"><img className="profile-image" src="/images/profile-photo.jpg" alt="Anurag Parkhe"/><div className="about-copy"><p>I enjoy understanding how businesses work: where customers experience friction, how products create value, how operations affect margins and how financial decisions should account for risk.</p><p>My experience spans a FinTech internship, an early-stage EdTech product experiment and independent analytical projects. I use Python, SQL, spreadsheets and visualisation to structure questions and communicate evidence.</p><p>I am also developing skills in workflow automation and applied AI, experimenting with n8n, APIs, webhooks, Docker and local language models to understand how repetitive business processes can become reliable systems.</p><p>My primary focus is Business Analyst, Business Operations and Data Analyst opportunities. I’m also interested in Product Analytics and selected Finance, Risk and FP&A roles where structured analysis supports commercial or financial decisions.</p><div className="about-links"><a href="https://www.linkedin.com/in/anuragparkhe" target="_blank" rel="noreferrer"><Linkedin size={17}/> LinkedIn <ExternalLink size={13}/></a><a href="https://github.com/Anuragp7788" target="_blank" rel="noreferrer"><Github size={17}/> GitHub <ExternalLink size={13}/></a></div></div></div><section className="skills-section"><p className="eyebrow">CAPABILITIES</p><h2>Tools are useful. Thinking is the skill.</h2><div className="skills-grid">{skills.map(([name,...items])=><div className="skill-card" key={name}><h3>{name}</h3><div className="tag-row">{items.map(x=><Tag key={x}>{x}</Tag>)}</div></div>)}</div></section></main>;
 }
+
+function ResumeViewer({ onClose }: { onClose: () => void }) {
+  const frameRef = useRef<HTMLIFrameElement>(null);
+  useEffect(() => {
+    const onKeyDown = (event: KeyboardEvent) => { if (event.key === "Escape") onClose(); };
+    window.addEventListener("keydown", onKeyDown);
+    document.body.style.overflow = "hidden";
+    return () => { window.removeEventListener("keydown", onKeyDown); document.body.style.overflow = ""; };
+  }, [onClose]);
+  const openFullscreen = () => { const frame = frameRef.current; if (frame?.requestFullscreen) frame.requestFullscreen(); };
+  return <div className="resume-overlay" role="dialog" aria-modal="true" aria-label="Résumé viewer" onMouseDown={(event) => { if (event.target === event.currentTarget) onClose(); }}>
+    <section className="resume-window">
+      <header className="resume-toolbar"><div><FileText size={17}/><span>ANURAG PARKHE <small>RÉSUMÉ</small></span></div><div className="resume-toolbar-actions"><a href="/resume.pdf" download="Anurag-Parkhe-Resume.pdf"><Download size={15}/> Download</a><button onClick={openFullscreen} aria-label="Open résumé fullscreen" title="Fullscreen"><Maximize2 size={16}/></button><button onClick={onClose} aria-label="Close résumé"><X size={18}/></button></div></header>
+      <iframe ref={frameRef} className="resume-frame" src="/resume.pdf#toolbar=1&navpanes=0" title="Anurag Parkhe résumé"/>
+    </section>
+  </div>;
+}
+
 function App() {
   const {route,navigate}=useRoute();
+  const [resumeOpen,setResumeOpen] = useState(false);
+  const closeResume = () => setResumeOpen(false);
+  const [theme,setTheme] = useState<"dark"|"light">(() => {
+    const saved = window.localStorage.getItem("anurag-portfolio-theme");
+    return saved === "light" ? "light" : "dark";
+  });
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme;
+    window.localStorage.setItem("anurag-portfolio-theme", theme);
+  }, [theme]);
+  const toggleTheme = () => setTheme(current => current === "dark" ? "light" : "dark");
   const content=useMemo(()=>{
-    if(route.path==="/") return <Home navigate={navigate}/>;
+    if(route.path==="/") return <Home navigate={navigate} onOpenResume={() => setResumeOpen(true)}/>;
     if(route.path==="/projects") return <Projects navigate={navigate}/>;
     if(route.path==="/projects/:slug") return <ProjectDetail slug={route.params?.slug||""} navigate={navigate}/>;
+    if(route.path==="/services") return <Services/>;
     if(route.path==="/dashboards") return <Dashboard/>;
     if(route.path==="/presentations") return <PresentationLibrary navigate={navigate}/>;
     if(route.path==="/presentations/:slug") return <SlideDeck slug={route.params?.slug||""} navigate={navigate}/>;
@@ -149,6 +217,6 @@ function App() {
     if(route.path==="/about") return <About/>;
     return <main className="page-shell inner-page"><SectionHeading eyebrow="404 / NOT FOUND" title="This page doesn't exist."/><Button onClick={()=>navigate("/")}>Return home</Button></main>;
   },[route,navigate]);
-  return <div className="app"><Header path={route.path} navigate={navigate}/>{content}<Footer navigate={navigate}/></div>;
+  return <div className="app"><Header path={route.path} navigate={navigate} theme={theme} onToggleTheme={toggleTheme}/>{content}<Footer navigate={navigate}/>{resumeOpen && <ResumeViewer onClose={closeResume}/>}</div>;
 }
 export default App;
