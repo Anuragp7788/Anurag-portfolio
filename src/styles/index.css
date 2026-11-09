@@ -521,3 +521,24 @@ html[data-theme="light"] .quiet-contact>div>a{color:#927b55!important}
  .wordmark-name{font-size:13px}
  .wordmark-copy small{font-size:7px;letter-spacing:.08em}
 }
+
+
+/* Portfolio positioning: clear work paths and a restrained freelance services page */
+.work-shortcuts{display:flex;flex-wrap:wrap;gap:12px;margin:26px 0 30px}
+.work-shortcuts button{display:inline-flex;align-items:center;gap:9px;padding:11px 14px;border:1px solid var(--line);border-radius:5px;background:var(--white);color:var(--ink);font:500 11px "Manrope",sans-serif;transition:border-color .2s,color .2s,transform .2s}
+.work-shortcuts button:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
+.services-note{max-width:760px;margin:42px 0 48px;padding:22px 24px;border-left:2px solid var(--accent);background:var(--white)}
+.services-note p{margin:10px 0 0;color:var(--muted);font-size:13px;line-height:1.85}
+.services-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.service-card{min-height:300px;padding:27px 24px;border:1px solid var(--line);background:var(--white);display:flex;flex-direction:column}
+.service-card h2{margin:25px 0 12px;color:var(--ink);font:400 27px/1.12 "DM Serif Display",Georgia,serif}
+.service-card>p{margin:0 0 18px;color:var(--muted);font-size:12px;line-height:1.8}
+.service-card .rich-list{margin-top:auto;gap:11px}
+.service-card .rich-list li{font-size:11px;line-height:1.55}
+.services-cta{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-top:86px;padding:38px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.services-cta h2{margin:15px 0 0;color:var(--ink);font:400 clamp(36px,4vw,54px)/1.05 "DM Serif Display",Georgia,serif}
+.services-cta h2 em{color:var(--accent);font-style:italic}
+.services-cta>a{display:inline-flex;align-items:center;gap:10px;padding-bottom:9px;border-bottom:1px solid var(--accent);color:var(--accent);font:500 12px "Manrope",sans-serif;white-space:nowrap}
+.services-disclaimer{max-width:760px;margin:18px 0 0;color:var(--muted);font:10px/1.8 "Manrope",sans-serif}
+@media(max-width:850px){.services-grid{grid-template-columns:1fr 1fr}.service-card:last-child{grid-column:1/-1}}
+@media(max-width:600px){.services-grid{grid-template-columns:1fr}.service-card:last-child{grid-column:auto}.service-card{min-height:0;padding:23px 20px}.services-cta{display:block;margin-top:60px}.services-cta>a{margin-top:25px}.work-shortcuts{gap:8px}.work-shortcuts button{font-size:10px;padding:10px}}
