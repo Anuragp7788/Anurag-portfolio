@@ -63,7 +63,7 @@ const Tag = ({ children }: { children: React.ReactNode }) => <span className="ta
 function Header({ path, navigate, theme, onToggleTheme }: { path: string; navigate: (path: string) => void; theme: "dark" | "light"; onToggleTheme: () => void }) {
   const [open, setOpen] = useState(false);
   return <header className="site-header"><div className="nav-wrap">
-    <button className="wordmark" onClick={() => navigate("/")} aria-label="Go to homepage"><span className="wordmark-mark">AP<span>·</span></span><span>ANURAG PARKHE<small>INDEPENDENT ANALYTICS PRACTICE</small></span></button>
+    <button className="wordmark" onClick={() => navigate("/")} aria-label="Go to homepage"><span className="wordmark-mark">AP<span>·</span></span><span className="wordmark-copy"><strong className="wordmark-name">Anurag Parkhe</strong><small>INDEPENDENT ANALYTICS PRACTICE</small></span></button>
     <nav className={open ? "nav-links nav-open" : "nav-links"}>{nav.map(item => <button key={item.path} className={path === item.path || (item.path === "/projects" && path.startsWith("/projects")) ? "nav-link active" : "nav-link"} onClick={() => { navigate(item.path); setOpen(false); }}>{item.label}</button>)}</nav>
     <div className="nav-actions"><button className="theme-toggle" onClick={onToggleTheme} aria-label={theme === "dark" ? "Switch to light theme" : "Switch to dark theme"} title={theme === "dark" ? "Switch to light theme" : "Switch to dark theme"}>{theme === "dark" ? <Sun size={16}/> : <Moon size={16}/>}<span>{theme === "dark" ? "LIGHT" : "DARK"}</span></button><a className="nav-contact" href="mailto:anuragparkhe7755@gmail.com">LET'S TALK <ArrowUpRight size={14}/></a><button className="mobile-toggle" onClick={() => setOpen(!open)} aria-label="Toggle navigation">{open ? <X/> : <Menu/>}</button></div>
   </div></header>;
@@ -109,7 +109,6 @@ function Home({ navigate, onOpenResume }: { navigate: (path: string) => void; on
     <section className="quiet-contact page-shell">
       <p className="quiet-label">HAVE A QUESTION OR AN OPPORTUNITY?</p>
       <div><h2>Let’s make<br/><em>something useful.</em></h2><a href="mailto:anuragparkhe7755@gmail.com">Get in touch <ArrowUpRight size={18}/></a></div>
-      <footer><span>© {new Date().getFullYear()} ANURAG PARKHE</span><span><a href="https://www.linkedin.com/in/anuragparkhe" target="_blank" rel="noreferrer">LINKEDIN</a><a href="https://github.com/Anuragp7788" target="_blank" rel="noreferrer">GITHUB</a></span></footer>
     </section>
   </main>;
 }
