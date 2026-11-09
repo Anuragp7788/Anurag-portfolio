@@ -78,14 +78,14 @@ function Home({ navigate, onOpenResume }: { navigate: (path: string) => void; on
   return <main className="quiet-home">
     <section className="quiet-hero page-shell">
       <div className="quiet-hero-copy">
-        <p className="quiet-kicker"><span/> ANURAG PARKHE <i>·</i> DATA, BUSINESS & PRODUCT ANALYTICS</p>
-        <h1>I turn data into<br/><em>better business</em><br/>decisions.</h1>
-        <p className="quiet-intro">I combine SQL, Python and business thinking to investigate performance, uncover patterns and turn analysis into practical recommendations. IIT (BHU) graduate with hands-on FinTech analytics experience.</p>
+        <p className="quiet-kicker"><span/> ANURAG PARKHE <i>·</i> DATA & BUSINESS ANALYTICS</p>
+        <h1>Making data<br/>useful for<br/><em>business decisions.</em></h1>
+        <p className="quiet-intro">I’m an IIT (BHU) graduate with hands-on FinTech analytics experience. I use SQL, Python and visualisation to understand business performance, explore customer and market behaviour, and turn findings into clear, actionable recommendations.</p>
         <div className="quiet-actions">
-          <Button onClick={() => navigate("/projects")}>Explore selected work <ArrowUpRight size={16}/></Button>
+          <Button onClick={() => navigate("/projects")}>Explore my work <ArrowUpRight size={16}/></Button>
           <button className="quiet-resume-link" onClick={onOpenResume}>View résumé <ArrowUpRight size={15}/></button>
         </div>
-        <div className="quiet-meta"><span>OPEN TO DATA · BUSINESS · PRODUCT · FINANCE ANALYST ROLES</span><span>SQL · PYTHON · POWER BI · AI AUTOMATION</span></div>
+        <div className="quiet-meta"><span>OPEN TO DATA · BUSINESS · PRODUCT ANALYST ROLES</span><span>SQL · PYTHON · POWER BI</span></div>
       </div>
       <div className="quiet-hero-space" aria-hidden="true"><span>ANALYTICS</span><i/></div>
     </section>
@@ -102,13 +102,13 @@ function Home({ navigate, onOpenResume }: { navigate: (path: string) => void; on
     <section className="quiet-about">
       <div className="page-shell quiet-about-inner">
         <p className="quiet-label">A LITTLE ABOUT ME</p>
-        <div><h2>Curious by nature.<br/><em>Practical by design.</em></h2><p>Engineering graduate from IIT (BHU), with experience in fintech analytics and a strong interest in markets, products and how businesses work.</p><button className="quiet-text-link" onClick={() => navigate("/experience")}>More about my experience <ArrowUpRight size={15}/></button></div>
+        <div><h2>Curious about the problem.<br/><em>Focused on the evidence.</em></h2><p>My background spans engineering, FinTech and independent analytics projects. I’m interested in how customers behave, how products perform and how better analysis can help teams make sharper decisions. I’m also exploring AI and workflow automation to make business processes more efficient.</p><button className="quiet-text-link" onClick={() => navigate("/about")}>More about me <ArrowUpRight size={15}/></button></div>
       </div>
     </section>
 
     <section className="quiet-contact page-shell">
-      <p className="quiet-label">HAVE A QUESTION OR AN OPPORTUNITY?</p>
-      <div><h2>Let’s make<br/><em>something useful.</em></h2><a href="mailto:anuragparkhe7755@gmail.com">Get in touch <ArrowUpRight size={18}/></a></div>
+      <p className="quiet-label">LET’S CONNECT</p>
+      <div><h2>Have a problem<br/><em>worth solving?</em></h2><a href="mailto:anuragparkhe7755@gmail.com">Start a conversation <ArrowUpRight size={18}/></a></div>
     </section>
   </main>;
 }
