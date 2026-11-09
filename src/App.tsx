@@ -86,7 +86,7 @@ function Home({ navigate, onOpenResume }: { navigate: (path: string) => void; on
           <Button onClick={() => navigate("/projects")}>Explore my work <ArrowUpRight size={16}/></Button>
           <button className="quiet-resume-link" onClick={onOpenResume}>View résumé <ArrowUpRight size={15}/></button>
         </div>
-        <div className="quiet-meta"><span>OPEN TO DATA · BUSINESS · PRODUCT ANALYST ROLES</span><span>SQL · PYTHON · POWER BI</span></div>
+        <div className="quiet-meta"><span>OPEN TO BUSINESS · DATA · OPERATIONS ROLES</span><span>SQL · PYTHON · POWER BI</span></div>
       </div>
       <div className="quiet-hero-space" aria-hidden="true"><span>ANALYTICS</span><i/></div>
     </section>
@@ -161,7 +161,7 @@ function Services() {
   const offers=[
     {n:"01",title:"Business & data analysis",desc:"Turn scattered data into a clear view of performance and practical next steps.",items:["Excel / SQL data analysis","KPI tracking and reporting","Power BI dashboard development","Customer, sales and operations analysis"]},
     {n:"02",title:"Research & decision support",desc:"Structure an unclear business question, gather evidence and communicate what it means.",items:["Market and competitor research","Business and industry analysis","Customer and product research","Insight summaries and presentations"]},
-    {n:"03",title:"Workflow automation & applied AI",desc:"Explore ways to reduce repetitive work by connecting business tools and data workflows.",items:["n8n workflow design","API and webhook integrations","Document and data-processing workflows","LLM-assisted workflow prototypes"]}
+    {n:"03",title:"Workflow automation & applied AI",desc:"Explore ways to reduce repetitive work by connecting business tools and data workflows.",items:["n8n workflow prototypes","API and webhook integrations","Document and data-processing workflows","LLM-assisted workflow prototypes"]}
   ];
   return <main className="page-shell inner-page"><SectionHeading eyebrow="INDEPENDENT WORK / SERVICES" title="Practical help for business problems." description="I’m open to clearly scoped freelance, project-based and collaboration opportunities across analytics, research and workflow automation."/><div className="services-note"><span className="eyebrow">HOW I WORK</span><p>Start with the business question, agree on the deliverable and scope, then share progress and document assumptions. I only claim outcomes that can be verified.</p></div><div className="services-grid">{offers.map(x=><article className="service-card" key={x.n}><span className="eyebrow">{x.n} / SERVICE AREA</span><h2>{x.title}</h2><p>{x.desc}</p><ul className="rich-list">{x.items.map(item=><li key={item}><Check size={16}/>{item}</li>)}</ul></article>)}</div><div className="services-cta"><div><span className="eyebrow">HAVE A DEFINED PROJECT?</span><h2>Let’s discuss the problem<br/><em>and the right scope.</em></h2></div><a href="mailto:anuragparkhe7755@gmail.com">Discuss a project <ArrowUpRight size={17}/></a></div><p className="services-disclaimer">Independent services and developing capabilities are presented transparently. AI automation work is currently an area of active practice; production deployments and client results will be added only when completed and verified.</p></main>;
 }
