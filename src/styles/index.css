@@ -487,3 +487,23 @@ html[data-theme="light"] .quiet-actions>a,
 html[data-theme="light"] .quiet-view-all,
 html[data-theme="light"] .quiet-text-link,
 html[data-theme="light"] .quiet-contact>div>a{color:#927b55!important}
+
+
+/* Résumé viewer */
+.quiet-resume-link{display:inline-flex;align-items:center;gap:8px;padding:0;border:0;background:transparent;color:var(--muted);font:500 11px "Manrope",sans-serif;cursor:pointer;transition:color .2s}
+.quiet-resume-link:hover{color:var(--accent)}
+.resume-overlay{position:fixed;inset:0;z-index:200;display:grid;place-items:center;padding:28px;background:rgba(10,13,11,.72);backdrop-filter:blur(9px);animation:resumeFade .2s ease-out}
+.resume-window{width:min(1040px,100%);height:min(90vh,900px);display:flex;flex-direction:column;overflow:hidden;background:var(--white);border:1px solid var(--line);border-radius:12px;box-shadow:0 28px 90px rgba(0,0,0,.3);animation:resumeRise .24s ease-out}
+.resume-toolbar{height:58px;flex-shrink:0;display:flex;align-items:center;justify-content:space-between;padding:0 18px;border-bottom:1px solid var(--line);background:var(--white);color:var(--ink)}
+.resume-toolbar>div:first-child,.resume-toolbar-actions,.resume-toolbar-actions a{display:flex;align-items:center;gap:10px}
+.resume-toolbar>div:first-child{font:600 10px "Manrope",sans-serif;letter-spacing:.08em}
+.resume-toolbar>div:first-child>svg{color:var(--accent)}
+.resume-toolbar small{display:block;margin-top:2px;color:var(--muted);font:8px "DM Mono",monospace;letter-spacing:.1em}
+.resume-toolbar-actions{gap:8px}
+.resume-toolbar-actions a,.resume-toolbar-actions button{height:34px;display:flex;align-items:center;justify-content:center;gap:7px;padding:0 10px;border:1px solid var(--line);border-radius:6px;background:transparent;color:var(--ink);font:10px "Manrope",sans-serif}
+.resume-toolbar-actions button{width:34px;padding:0}
+.resume-toolbar-actions a:hover,.resume-toolbar-actions button:hover{border-color:var(--accent);color:var(--accent)}
+.resume-frame{width:100%;height:100%;flex:1;border:0;background:#e8e8e8}
+@keyframes resumeFade{from{opacity:0}to{opacity:1}}@keyframes resumeRise{from{opacity:0;transform:translateY(10px) scale(.99)}to{opacity:1;transform:translateY(0) scale(1)}}
+@media(max-width:650px){.resume-overlay{padding:0}.resume-window{width:100%;height:100dvh;border-radius:0}.resume-toolbar{height:56px;padding:0 12px}.resume-toolbar-actions a{font-size:0;gap:0;width:34px;padding:0}.resume-toolbar-actions a svg{width:16px;height:16px}}
+@media(prefers-reduced-motion:reduce){.resume-overlay,.resume-window{animation:none}}
