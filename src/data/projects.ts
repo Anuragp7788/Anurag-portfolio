@@ -12,7 +12,7 @@ export const projects: Project[] = [
     summary: "An end-to-end retail analytics case study combining sales profitability analysis with a separately validated inventory workstream.",
     status: "In progress · reproducible sales analysis documented",
     tools: ["SQL", "Python", "Power BI", "Excel", "Pandas", "PostgreSQL"],
-    visual: "retail", visualLabel: "RETAIL INTELLIGENCE",
+    visual: "dashboard", visualLabel: "RETAIL INTELLIGENCE",
     repoUrl: "https://github.com/Anuragp7788/retail-profitability-inventory-intelligence",
     problem: "How can retail leaders understand sales performance, identify profit leakage and make better inventory decisions using reliable data?",
     context: "This case study uses public datasets within a fictional retail decision-making scenario. The Sample Superstore sales analysis is documented separately from a candidate daily inventory dataset. The sources are not joined because they do not have established common entity keys.",
