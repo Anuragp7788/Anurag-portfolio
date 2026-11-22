@@ -550,3 +550,77 @@ html[data-theme="light"] .quiet-contact>div>a{color:#927b55!important}
 .quiet-contact-actions a{display:inline-flex;align-items:center;gap:10px;color:var(--accent);border-bottom:1px solid var(--accent);padding-bottom:9px;font-size:12px}
 .quiet-contact-actions a:first-child{color:var(--ink);border-color:var(--ink)}
 @media(max-width:650px){.quiet-contact-actions{margin-top:28px;gap:17px}}
+
+
+/* V3 motion polish — restrained editorial motion, with reduced-motion support */
+@keyframes premiumRise {
+  from { opacity: 0; transform: translate3d(0, 22px, 0); filter: blur(5px); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); filter: blur(0); }
+}
+@keyframes premiumFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes premiumRule {
+  from { transform: scaleX(0); transform-origin: left; }
+  to { transform: scaleX(1); transform-origin: left; }
+}
+@keyframes premiumDrift {
+  0%, 100% { transform: translate3d(0,0,0); }
+  50% { transform: translate3d(0,-7px,0); }
+}
+.quiet-hero-copy .quiet-kicker { animation: premiumRise .65s .04s both cubic-bezier(.2,.7,.2,1); }
+.quiet-hero-copy h1 { animation: premiumRise .9s .12s both cubic-bezier(.2,.7,.2,1); }
+.quiet-hero-copy .quiet-intro { animation: premiumRise .8s .25s both cubic-bezier(.2,.7,.2,1); }
+.quiet-hero-copy .quiet-actions { animation: premiumRise .75s .36s both cubic-bezier(.2,.7,.2,1); }
+.quiet-hero-copy .quiet-opportunity-note { animation: premiumFade .8s .48s both; }
+.quiet-hero-copy .quiet-meta { animation: premiumRise .8s .55s both cubic-bezier(.2,.7,.2,1); }
+.quiet-selected { animation: premiumFade 1s .3s both; }
+.quiet-section-top { position: relative; }
+.quiet-section-top:after {
+  content: ""; position: absolute; left: 0; bottom: -1px; width: 100%; height: 1px;
+  background: var(--accent); transform: scaleX(.12); transform-origin: left;
+  opacity: .65; transition: transform .7s cubic-bezier(.2,.7,.2,1), opacity .4s;
+}
+.quiet-selected:hover .quiet-section-top:after { transform: scaleX(1); opacity: .9; }
+.quiet-project-row { position: relative; overflow: hidden; }
+.quiet-project-row:before {
+  content: ""; position: absolute; left: 0; bottom: -1px; width: 100%; height: 1px;
+  background: var(--accent); transform: scaleX(0); transform-origin: left;
+  transition: transform .55s cubic-bezier(.2,.7,.2,1);
+}
+.quiet-project-row:hover:before { transform: scaleX(1); }
+.quiet-project-name { transition: transform .45s cubic-bezier(.2,.7,.2,1), letter-spacing .45s; }
+.quiet-project-row:hover .quiet-project-name { transform: translateX(5px); letter-spacing: .005em; }
+.quiet-project-arrow { transition: transform .4s cubic-bezier(.2,.7,.2,1), color .3s; }
+.quiet-project-row:hover .quiet-project-arrow { transform: translate(3px,-3px); color: var(--accent); }
+.quiet-about-inner { animation: premiumRise .85s both cubic-bezier(.2,.7,.2,1); }
+.quiet-about h2 em, .quiet-contact h2 em { display: inline-block; transition: transform .45s cubic-bezier(.2,.7,.2,1); }
+.quiet-about-inner:hover h2 em { transform: translateX(5px); }
+.quiet-contact { animation: premiumFade 1s both; }
+.quiet-contact>div>a { transition: gap .35s, color .3s, border-color .3s; }
+.quiet-contact>div>a:hover { gap: 18px; }
+.quiet-actions .button { box-shadow: 0 7px 20px color-mix(in srgb,var(--ink) 12%,transparent); }
+.quiet-actions .button:hover { box-shadow: 0 12px 28px color-mix(in srgb,var(--accent) 22%,transparent); }
+.nav-contact svg { transition: transform .3s cubic-bezier(.2,.7,.2,1); }
+.nav-contact:hover svg { transform: translate(3px,-3px); }
+.nav-link:focus-visible, .quiet-project-row:focus-visible { outline-offset: 5px; }
+@supports (animation-timeline: view()) {
+  .quiet-project-row, .quiet-about-inner, .quiet-contact>div {
+    animation: premiumRise linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 55%;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .quiet-hero-copy .quiet-kicker, .quiet-hero-copy h1, .quiet-hero-copy .quiet-intro,
+  .quiet-hero-copy .quiet-actions, .quiet-hero-copy .quiet-opportunity-note,
+  .quiet-hero-copy .quiet-meta, .quiet-selected, .quiet-about-inner, .quiet-contact,
+  .quiet-project-row, .quiet-contact>div, .quiet-object, .quiet-object-shadow,
+  .quiet-orbit-one, .quiet-orbit-two {
+    animation: none !important;
+    filter: none !important;
+  }
+  .quiet-project-row, .quiet-project-name, .quiet-project-arrow, .quiet-contact>div>a,
+  .nav-contact svg, .quiet-about h2 em { transition: none !important; }
+}
