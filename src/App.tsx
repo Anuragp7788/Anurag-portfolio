@@ -29,6 +29,7 @@ function useRoute() {
 const nav = [
   { label: "Home", path: "/" },
   { label: "Projects", path: "/projects" },
+  { label: "Dashboards", path: "/dashboards" },
   { label: "Services", path: "/services" },
   { label: "Experience", path: "/experience" },
   { label: "About", path: "/about" },
@@ -95,9 +96,35 @@ function Home({ navigate, onOpenResume }: { navigate: (path: string) => void; on
     <section className="quiet-selected page-shell">
       <div className="quiet-section-top"><p className="quiet-label">SELECTED WORK</p><button className="quiet-view-all" onClick={() => navigate("/projects")}>View all projects <ArrowUpRight size={15}/></button></div>
       <div className="quiet-project-list">
-        {projects.slice(0,3).map((p,i)=><button className="quiet-project-row" key={p.slug} onClick={() => navigate(`/projects/${p.slug}`)}>
+        {projects.slice(0,4).map((p,i)=><button className="quiet-project-row" key={p.slug} onClick={() => navigate(`/projects/${p.slug}`)}>
           <span className="quiet-project-index">0{i+1}</span><span className="quiet-project-name">{p.title}<small>{p.category} · {p.tools.slice(0,3).join(" / ")}</small></span><span className="quiet-project-arrow"><ArrowUpRight size={19}/></span>
         </button>)}
+      </div>
+    </section>
+
+    <section className="quiet-dashboard page-shell">
+      <div className="quiet-dashboard-copy">
+        <p className="quiet-label">INTERACTIVE ANALYSIS</p>
+        <h2>Explore the numbers.<br/><em>Not just the screenshots.</em></h2>
+        <p>A browser-based commercial performance dashboard with working filters, KPI cards, trend visualisation and a detail table. It uses clearly labelled illustrative data to demonstrate how I structure and present business analysis.</p>
+        <button className="quiet-text-link" onClick={() => navigate("/dashboards")}>Open dashboard explorer <ArrowUpRight size={15}/></button>
+      </div>
+      <div className="quiet-dashboard-preview" aria-label="Illustrative dashboard preview">
+        <div className="quiet-dashboard-top"><span>COMMERCIAL OVERVIEW</span><span>DEMO DATA</span></div>
+        <div className="quiet-dashboard-kpis">
+          <div><small>REVENUE INDEX</small><strong>74</strong><i>Illustrative</i></div>
+          <div><small>ORDERS INDEX</small><strong>53</strong><i>Illustrative</i></div>
+          <div><small>CONVERSION INDEX</small><strong>34</strong><i>Illustrative</i></div>
+        </div>
+        <div className="quiet-dashboard-chart">
+          <span>PERFORMANCE TREND · SAMPLE SERIES</span>
+          <svg viewBox="0 0 520 150" role="img" aria-label="Illustrative upward trend chart">
+            <path d="M8 122 H512 M8 82 H512 M8 42 H512" className="quiet-chart-grid"/>
+            <path d="M8 116 C48 105 65 112 102 91 S160 98 195 74 S250 86 290 58 S350 73 390 42 S455 51 512 16" className="quiet-chart-line"/>
+            <path d="M8 116 C48 105 65 112 102 91 S160 98 195 74 S250 86 290 58 S350 73 390 42 S455 51 512 16 L512 140 L8 140Z" className="quiet-chart-area"/>
+          </svg>
+        </div>
+        <p className="quiet-dashboard-disclaimer">Illustrative interface only · Not actual company or client performance</p>
       </div>
     </section>
 
