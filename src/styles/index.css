@@ -577,3 +577,40 @@ html[data-theme="light"] .quiet-contact>div>a{color:#927b55!important}
 @media(max-width:900px){.quiet-hero-redesign{grid-template-columns:1fr;gap:36px;min-height:0;padding-top:65px;padding-bottom:65px}.quiet-hero-redesign .quiet-hero-copy{max-width:760px}.home-feature-panel{max-width:650px}.quiet-hero-redesign .quiet-meta{margin-top:30px}}
 @media(max-width:650px){.quiet-hero-redesign{padding-top:48px;padding-bottom:52px;gap:28px}.quiet-hero-redesign .quiet-hero-copy h1{font-size:clamp(48px,12vw,68px)}.quiet-hero-redesign .quiet-intro{font-size:13px;margin-top:22px}.quiet-hero-redesign .quiet-meta{margin-top:30px}.home-feature-panel{padding:18px}.home-feature-title{padding:27px 0 19px}.home-kpi-grid{gap:8px;padding:15px 0}.home-kpi-grid>div{padding:11px}.home-kpi-grid strong{font-size:21px}.home-feature-chart{height:65px}.home-feature-top,.home-feature-foot{font-size:7px;letter-spacing:.04em}}
 @media(prefers-reduced-motion:reduce){.home-feature-panel{transition:none}}
+
+
+/* Art-directed homepage: deep ink, warm paper and acid-lime signal */
+:root{--accent:#b5e853}
+.quiet-home{background:#f2f0e9}
+.quiet-hero-redesign{grid-template-columns:minmax(0,.88fr) minmax(0,1.12fr);gap:clamp(30px,4vw,64px);min-height:730px;padding-top:84px;padding-bottom:82px}
+.quiet-hero-redesign .quiet-hero-copy h1{font-size:clamp(58px,6.7vw,91px);line-height:.99;letter-spacing:-.065em;color:#171a17}
+.quiet-hero-redesign .quiet-hero-copy h1 em{color:#658b22}
+.quiet-hero-redesign .quiet-intro{color:#565b52;font-size:14px;line-height:1.9}
+.quiet-hero-redesign .quiet-kicker{color:#697064}
+.quiet-hero-redesign .quiet-kicker span{background:#8dbb35}
+.quiet-hero-redesign .quiet-meta{color:#3f463b}
+.home-feature-real{position:relative;overflow:hidden;padding:20px;text-align:left;background:#171c17;border:1px solid #303a2c;border-radius:4px;color:#f5f2e8;box-shadow:0 32px 80px rgba(24,31,20,.2);transform:rotate(.4deg);transition:transform .3s ease,box-shadow .3s ease}
+.home-feature-real:hover{transform:rotate(0) translateY(-5px);box-shadow:0 38px 90px rgba(24,31,20,.26)}
+.home-feature-real .home-feature-top{color:#aeb7a5;font-size:9px;letter-spacing:.11em}
+.home-feature-image-wrap{position:relative;margin:22px 0 0;padding:9px;background:#fff;border:1px solid #414b3b;box-shadow:0 12px 34px rgba(0,0,0,.22)}
+.home-feature-image-wrap img{display:block;width:100%;height:auto;aspect-ratio:1.92/1;object-fit:contain;background:#fff}
+.home-image-caption{position:absolute;left:18px;bottom:17px;padding:7px 9px;background:#171c17;color:#d9f7a2;font:8px "DM Mono",monospace;letter-spacing:.1em}
+.home-feature-bottom{display:flex;align-items:end;justify-content:space-between;gap:16px;padding:23px 2px 4px}
+.home-feature-eyebrow{display:block;margin-bottom:8px;color:#b5e853;font:9px "DM Mono",monospace;letter-spacing:.13em}
+.home-feature-bottom strong{display:block;color:#f5f2e8;font:700 clamp(30px,3vw,43px)/1 "Manrope",sans-serif;letter-spacing:-.06em}
+.home-feature-bottom strong i{color:#b5e853;font:italic 400 18px "DM Serif Display",Georgia,serif;letter-spacing:0}
+.home-feature-bottom p{margin:9px 0 0;color:#b2b9aa;font:10px/1.5 "DM Mono",monospace}
+.home-feature-open{display:inline-flex;align-items:center;gap:7px;white-space:nowrap;color:#b5e853;font:9px "DM Mono",monospace;letter-spacing:.08em}
+.home-feature-real .home-feature-disclaimer{margin:18px 2px 1px;padding-top:12px;border-top:1px solid #343d31;color:#8f9987;font:9px/1.6 "Manrope",sans-serif}
+.quiet-selected{padding-top:36px}
+.quiet-project-row{border-color:#d6d6ca}
+.quiet-project-index{color:#789b3c}
+.quiet-about{background:#e6e8dc}
+.quiet-about h2 em{color:#6d912e}
+.quiet-contact{background:#171c17;color:#f4f1e8;padding-top:70px;padding-bottom:75px}
+.quiet-contact h2{color:#f4f1e8}
+.quiet-contact h2 em{color:#b5e853}
+.quiet-contact .quiet-label{color:#b5e853}
+.quiet-contact-actions a,.quiet-contact-actions a:first-child{color:#b5e853;border-color:#b5e853}
+@media(max-width:900px){.quiet-hero-redesign{grid-template-columns:1fr;min-height:0}.home-feature-real{max-width:760px;transform:none}}
+@media(max-width:650px){.quiet-hero-redesign .quiet-hero-copy h1{font-size:clamp(52px,13vw,72px)}.home-feature-real{padding:14px}.home-feature-bottom{display:block}.home-feature-open{margin-top:17px}.home-feature-bottom strong{font-size:34px}.home-feature-bottom p{font-size:9px}.home-feature-real .home-feature-top{font-size:7px}}
