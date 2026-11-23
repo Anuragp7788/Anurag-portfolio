@@ -77,19 +77,31 @@ function ProjectCard({ project, navigate }: { project: Project; navigate: (path:
 }
 function Home({ navigate, onOpenResume }: { navigate: (path: string) => void; onOpenResume: () => void }) {
   return <main className="quiet-home">
-    <section className="quiet-hero page-shell">
+    <section className="quiet-hero page-shell quiet-hero-redesign">
       <div className="quiet-hero-copy">
         <p className="quiet-kicker"><span/> ANURAG PARKHE <i>·</i> DATA & BUSINESS ANALYTICS</p>
-        <h1>Making data<br/>useful for<br/><em>business decisions.</em></h1>
-        <p className="quiet-intro">I’m an IIT (BHU) graduate with hands-on FinTech analytics experience. I use SQL, Python and visualisation to understand business performance, explore customer and market behaviour, and turn findings into clear, actionable recommendations.</p>
+        <h1>I turn business data into <em>clear decisions.</em></h1>
+        <p className="quiet-intro">I’m an IIT (BHU) graduate with FinTech analytics experience. I use SQL, Python and Power BI to investigate business performance, understand customer and market behaviour, and communicate practical recommendations.</p>
         <div className="quiet-actions">
-          <Button onClick={() => navigate("/projects")}>Explore my work <ArrowUpRight size={16}/></Button>
+          <Button onClick={() => navigate("/projects")}>View selected projects <ArrowUpRight size={16}/></Button>
           <button className="quiet-resume-link" onClick={onOpenResume}>View résumé <ArrowUpRight size={15}/></button>
         </div>
-        <p className="quiet-opportunity-note">Open to full-time roles · Also available for selected freelance projects</p>
-        <div className="quiet-meta"><span>OPEN TO BUSINESS · DATA · OPERATIONS ROLES</span><span>SQL · PYTHON · POWER BI</span></div>
+        <p className="quiet-opportunity-note">Seeking full-time opportunities in data, business and operations analytics</p>
+        <div className="quiet-meta"><span>SQL · PYTHON · POWER BI</span><span>BUSINESS · PRODUCT · FINTECH</span></div>
       </div>
-      <div className="quiet-hero-space" aria-hidden="true"><span>ANALYTICS</span><i/></div>
+      <button className="home-feature-panel" onClick={() => navigate("/projects/retail-profitability-inventory-intelligence")} aria-label="Explore the retail profitability and inventory intelligence case study">
+        <div className="home-feature-top"><span>FEATURED CASE STUDY / 01</span><span>INDEPENDENT PROJECT <ArrowUpRight size={14}/></span></div>
+        <div className="home-feature-title"><span>RETAIL PERFORMANCE</span><strong>From sales data<br/>to business insight.</strong></div>
+        <div className="home-kpi-grid">
+          <div><small>NET SALES</small><strong>11.22M</strong></div>
+          <div><small>CALCULATED PROFIT</small><strong>4.96M</strong></div>
+          <div><small>PROFIT MARGIN</small><strong>44.23%</strong></div>
+          <div><small>UNITS SOLD</small><strong>125K</strong></div>
+        </div>
+        <div className="home-feature-chart" aria-hidden="true"><span/><span/><span/><span/><span/><span/><span/><span/><span/><span/><span/><span/><span/><span/><span/><span/><span/><span/><span/><span/><span/><span/><span/><span/></div>
+        <div className="home-feature-foot"><span>POWER BI · DAX · PYTHON · SQL</span><span>VIEW CASE STUDY <ArrowUpRight size={14}/></span></div>
+        <p className="home-feature-disclaimer">Independent portfolio analysis · Dataset-based results, not client performance</p>
+      </button>
     </section>
 
     <section className="quiet-selected page-shell">
