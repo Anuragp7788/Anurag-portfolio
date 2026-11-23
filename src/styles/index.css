@@ -550,3 +550,30 @@ html[data-theme="light"] .quiet-contact>div>a{color:#927b55!important}
 .quiet-contact-actions a{display:inline-flex;align-items:center;gap:10px;color:var(--accent);border-bottom:1px solid var(--accent);padding-bottom:9px;font-size:12px}
 .quiet-contact-actions a:first-child{color:var(--ink);border-color:var(--ink)}
 @media(max-width:650px){.quiet-contact-actions{margin-top:28px;gap:17px}}
+
+
+/* Homepage first-impression redesign: evidence-led featured project panel */
+.quiet-hero-redesign{grid-template-columns:minmax(0,1fr) minmax(390px,.94fr);align-items:center;gap:clamp(36px,5vw,76px);min-height:660px;padding-top:72px;padding-bottom:72px}
+.quiet-hero-redesign .quiet-hero-copy{max-width:620px}
+.quiet-hero-redesign .quiet-hero-copy h1{max-width:650px;font-size:clamp(56px,6.2vw,82px);line-height:1.02;letter-spacing:-.055em}
+.quiet-hero-redesign .quiet-intro{max-width:510px;font-size:14px;line-height:1.9}
+.quiet-hero-redesign .quiet-meta{max-width:100%;margin-top:42px;gap:18px;flex-wrap:wrap}
+.home-feature-panel{display:block;width:100%;min-width:0;padding:24px;text-align:left;border:1px solid color-mix(in srgb,var(--line) 75%,var(--accent));border-radius:8px;background:var(--white);color:var(--ink);box-shadow:0 22px 60px rgba(15,20,16,.08);transition:transform .25s ease,box-shadow .25s ease}
+.home-feature-panel:hover{transform:translateY(-4px);box-shadow:0 28px 70px rgba(15,20,16,.13)}
+.home-feature-top,.home-feature-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;color:var(--muted);font:8px/1.5 "DM Mono",monospace;letter-spacing:.08em}
+.home-feature-top span:last-child,.home-feature-foot span:last-child{display:flex;align-items:center;gap:5px}
+.home-feature-title{padding:35px 0 24px;border-bottom:1px solid var(--line)}
+.home-feature-title>span{display:block;margin-bottom:12px;color:var(--accent);font:9px "DM Mono",monospace;letter-spacing:.13em}
+.home-feature-title strong{display:block;font:600 clamp(25px,3vw,35px)/1.12 "Manrope",sans-serif;letter-spacing:-.045em}
+.home-kpi-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;padding:20px 0}
+.home-kpi-grid>div{display:grid;gap:7px;padding:13px 14px;border:1px solid var(--line);background:color-mix(in srgb,var(--paper) 68%,transparent)}
+.home-kpi-grid small{color:var(--muted);font:8px "DM Mono",monospace;letter-spacing:.06em}
+.home-kpi-grid strong{color:var(--ink);font:700 24px "Manrope",sans-serif;letter-spacing:-.04em}
+.home-feature-chart{height:82px;display:flex;align-items:end;gap:5px;padding:0 2px 8px;border-bottom:1px solid var(--line);background:repeating-linear-gradient(to bottom,transparent 0,transparent 26px,var(--line) 27px,var(--line) 28px)}
+.home-feature-chart span{flex:1;height:var(--bar,35%);background:var(--accent);opacity:.75;border-radius:2px 2px 0 0}
+.home-feature-chart span:nth-child(3n){height:72%}.home-feature-chart span:nth-child(4n){height:42%}.home-feature-chart span:nth-child(7n){height:88%}.home-feature-chart span:nth-child(11n){height:58%}.home-feature-chart span:nth-child(13n){height:96%}
+.home-feature-foot{padding-top:17px;color:var(--ink)}
+.home-feature-disclaimer{margin:14px 0 0;color:var(--muted);font:9px/1.6 "Manrope",sans-serif}
+@media(max-width:900px){.quiet-hero-redesign{grid-template-columns:1fr;gap:36px;min-height:0;padding-top:65px;padding-bottom:65px}.quiet-hero-redesign .quiet-hero-copy{max-width:760px}.home-feature-panel{max-width:650px}.quiet-hero-redesign .quiet-meta{margin-top:30px}}
+@media(max-width:650px){.quiet-hero-redesign{padding-top:48px;padding-bottom:52px;gap:28px}.quiet-hero-redesign .quiet-hero-copy h1{font-size:clamp(48px,12vw,68px)}.quiet-hero-redesign .quiet-intro{font-size:13px;margin-top:22px}.quiet-hero-redesign .quiet-meta{margin-top:30px}.home-feature-panel{padding:18px}.home-feature-title{padding:27px 0 19px}.home-kpi-grid{gap:8px;padding:15px 0}.home-kpi-grid>div{padding:11px}.home-kpi-grid strong{font-size:21px}.home-feature-chart{height:65px}.home-feature-top,.home-feature-foot{font-size:7px;letter-spacing:.04em}}
+@media(prefers-reduced-motion:reduce){.home-feature-panel{transition:none}}
