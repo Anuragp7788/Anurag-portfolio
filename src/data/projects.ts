@@ -9,28 +9,28 @@ export const projects: Project[] = [
     slug: "retail-profitability-inventory-intelligence", number: "01",
     title: "Retail sales, profitability & inventory intelligence",
     category: "Business Intelligence",
-    summary: "An end-to-end retail analytics case study combining sales profitability analysis with a separately validated inventory workstream.",
-    status: "In progress · reproducible sales analysis documented",
-    tools: ["SQL", "Python", "Power BI", "Excel", "Pandas", "PostgreSQL"],
+    summary: "A multi-page Power BI case study analysing retail sales, profitability, returns and a latest product–store inventory snapshot.",
+    status: "Power BI report built · local validation completed for core sales and inventory visuals",
+    tools: ["Power BI", "DAX", "Power Query", "Python", "SQL", "Excel", "Pandas"],
     visual: "dashboard", visualLabel: "RETAIL INTELLIGENCE",
     repoUrl: "https://github.com/Anuragp7788/retail-profitability-inventory-intelligence",
-    problem: "How can retail leaders understand sales performance, identify profit leakage and make better inventory decisions using reliable data?",
-    context: "This case study uses public datasets within a fictional retail decision-making scenario. The Sample Superstore sales analysis is documented separately from a candidate daily inventory dataset. The sources are not joined because they do not have established common entity keys.",
+    problem: "How can retail decision-makers understand commercial performance, identify weak-margin sales types and inspect stock exposure across products and stores?",
+    context: "This independent case study uses supplied retail sales and inventory CSV files in a fictional multi-store retail scenario. The sales file contains 125,751 transaction rows and the inventory file contains 284,755 historical records. The analysis treats sales performance and the latest inventory position as distinct analytical views; it does not claim a causal link between them or represent results from a real client.",
     approach: [
-      "Translate leadership questions into measurable KPIs and analysis requirements.",
-      "Profile the Sample Superstore transaction data and document its grain, quality checks and limitations.",
-      "Use Python and SQL to analyse sales, recorded profit, discount patterns, product mix and geography.",
-      "Validate a separate daily inventory dataset before defining stock cover or replenishment indicators.",
-      "Reconcile calculations across Python, SQL, Excel and the eventual dashboard.",
-      "Translate verified findings into practical investigation priorities for commercial and inventory teams."
+      "Profile the two source files, inspect field types and document the data grain and known limitations.",
+      "Build sales measures that exclude return rows from gross sales, COGS, profit and units sold while reporting returns separately.",
+      "Create a Power BI semantic model with date, product and store dimensions, plus a latest product–store inventory snapshot.",
+      "Build five report pages covering executive performance, sales profitability, inventory health, product/store performance and returns.",
+      "Validate key sales measures against independent calculations from the supplied CSV files.",
+      "Classify latest product–store records as negative, zero or positive stock and reconcile the category counts."
     ],
-    takeaway: "The project is designed to connect technical analysis with business decisions: explain where performance differs, show the evidence and identify what a manager should investigate next.",
-    caveat: "The sales findings are documented in the project repository but still require local reruns and SQL reconciliation. The separate inventory source has not yet been validated, and the interactive retail dashboard is not yet published. No inventory or combined-business result is claimed at this stage.",
+    takeaway: "Verified sales results show 11.22M in sales excluding returns, 4.96M calculated profit and a 44.23% calculated margin. Sales-type analysis highlights materially weaker economics in clearance and Markdown Tier 2 than in full-price sales. The inventory snapshot contains 60,968 product–store pairs: 703 negative-stock, 8,406 zero-stock and 51,859 positive-stock records.",
+    caveat: "This is an independent portfolio exercise using supplied dataset files, not paid client work or verified performance from a named retailer. The source provenance/licence should be confirmed before redistributing the raw data. Return-reason analysis is unavailable because the Reason of Return field is blank. The Sales Channel field contains only Channel Alpha. Inventory stock-cover, replenishment and causal discount-impact claims are not made. The Power BI report has been opened and visually checked locally; a public interactive Power BI embed is not currently linked.",
     nextSteps: [
-      "Download and validate the public inventory source, including its fields, grain, date coverage and licence.",
-      "Run the sales notebook and Python script locally, then reconcile the SQL outputs.",
-      "Build and test the interactive dashboard using verified outputs only.",
-      "Publish the live dashboard and final case study after the calculations and interactions are checked."
+      "Publish the PBIP project, data dictionary, metric definitions and reproducible validation scripts in the repository without exposing restricted raw data.",
+      "Capture clean, full-resolution screenshots of all five report pages and add them to the case study.",
+      "Reconcile inventory valuation and snapshot measures with a separate Python audit before publishing those values as headline findings.",
+      "Add a public interactive dashboard only after choosing an appropriate hosting and data-access method."
     ]
   },
   {
