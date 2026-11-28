@@ -93,7 +93,7 @@ function Home({ navigate, onOpenResume }: { navigate: (path: string) => void; on
         <div className="home-feature-image-wrap"><img src="/images/retail-dashboard.webp" alt="Actual Power BI executive overview showing net sales, calculated profit, profit margin, units sold, sales trends, division and store performance"/><span className="home-image-caption">POWER BI EXECUTIVE OVERVIEW</span></div>
         <div className="home-feature-bottom"><div><span className="home-feature-eyebrow">THE BUSINESS SIGNAL</span><strong>11.22M <i>net sales</i></strong><p>4.96M calculated profit · 44.23% margin · 125K units sold</p></div><span className="home-feature-open">EXPLORE CASE <ArrowUpRight size={16}/></span></div>
         <p className="home-feature-disclaimer">Independent portfolio analysis · Dataset-based results, not client performance</p>
-      </button>>
+      </button>
     </section>
 
     <section className="quiet-selected page-shell">
