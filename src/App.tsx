@@ -29,7 +29,6 @@ function useRoute() {
 const nav = [
   { label: "Home", path: "/" },
   { label: "Projects", path: "/projects" },
-  { label: "Services", path: "/services" },
   { label: "Experience", path: "/experience" },
   { label: "About", path: "/about" },
 ];
@@ -64,7 +63,7 @@ const Tag = ({ children }: { children: React.ReactNode }) => <span className="ta
 function Header({ path, navigate, theme, onToggleTheme }: { path: string; navigate: (path: string) => void; theme: "dark" | "light"; onToggleTheme: () => void }) {
   const [open, setOpen] = useState(false);
   return <header className="site-header"><div className="nav-wrap">
-    <button className="wordmark" onClick={() => navigate("/")} aria-label="Go to homepage"><span className="wordmark-mark">AP<span>·</span></span><span className="wordmark-copy"><strong className="wordmark-name">Anurag Parkhe</strong><small>INDEPENDENT ANALYTICS PRACTICE</small></span></button>
+    <button className="wordmark" onClick={() => navigate("/")} aria-label="Go to homepage"><span className="wordmark-mark">AP<span>·</span></span><span className="wordmark-copy"><strong className="wordmark-name">Anurag Parkhe</strong><small>DATA · BUSINESS · STRATEGY</small></span></button>
     <nav className={open ? "nav-links nav-open" : "nav-links"}>{nav.map(item => <button key={item.path} className={path === item.path || (item.path === "/projects" && path.startsWith("/projects")) ? "nav-link active" : "nav-link"} onClick={() => { navigate(item.path); setOpen(false); }}>{item.label}</button>)}</nav>
     <div className="nav-actions"><button className="theme-toggle" onClick={onToggleTheme} aria-label={theme === "dark" ? "Switch to light theme" : "Switch to dark theme"} title={theme === "dark" ? "Switch to light theme" : "Switch to dark theme"}>{theme === "dark" ? <Sun size={16}/> : <Moon size={16}/>}<span>{theme === "dark" ? "LIGHT" : "DARK"}</span></button><a className="nav-contact" href="mailto:anuragparkhe7755@gmail.com">LET'S TALK <ArrowUpRight size={14}/></a><button className="mobile-toggle" onClick={() => setOpen(!open)} aria-label="Toggle navigation">{open ? <X/> : <Menu/>}</button></div>
   </div></header>;
@@ -76,20 +75,25 @@ function ProjectCard({ project, navigate }: { project: Project; navigate: (path:
   return <article className="project-card"><button className="project-art" onClick={() => navigate(`/projects/${project.slug}`)} aria-label={`Open ${project.title}`}><div className={`art-pattern art-${project.visual}`}><span>{project.number}</span><div className="art-lines"><i/><i/><i/><i/></div><strong>{project.visualLabel}</strong></div><span className="card-open"><ArrowUpRight size={18}/></span></button><div className="project-meta"><span className="eyebrow">{project.category}</span><span className="project-status">{project.status}</span></div><h3>{project.title}</h3><p className="muted">{project.summary}</p><div className="tag-row">{project.tools.slice(0, 4).map(t => <Tag key={t}>{t}</Tag>)}</div><button className="text-link" onClick={() => navigate(`/projects/${project.slug}`)}>Explore case study <ArrowRight size={15}/></button></article>;
 }
 function Home({ navigate, onOpenResume }: { navigate: (path: string) => void; onOpenResume: () => void }) {
-  return <main className="quiet-home">
-    <section className="quiet-hero page-shell">
+  return <main className="quiet-home"><div className="ambient-orb ambient-orb-one"/><div className="ambient-orb ambient-orb-two"/><div className="ambient-ring ambient-ring-one"/><div className="ambient-ring ambient-ring-two"/>
+    <section className="quiet-hero page-shell quiet-hero-redesign">
       <div className="quiet-hero-copy">
         <p className="quiet-kicker"><span/> ANURAG PARKHE <i>·</i> DATA & BUSINESS ANALYTICS</p>
-        <h1>Making data<br/>useful for<br/><em>business decisions.</em></h1>
-        <p className="quiet-intro">I’m an IIT (BHU) graduate with hands-on FinTech analytics experience. I use SQL, Python and visualisation to understand business performance, explore customer and market behaviour, and turn findings into clear, actionable recommendations.</p>
+        <h1>Making data useful for <em>better business decisions.</em></h1>
+        <p className="quiet-intro">I’m an IIT (BHU) graduate with FinTech analytics experience. I work across SQL, Python and Power BI to uncover what is happening in a business, why it matters, and what to do next.</p>
         <div className="quiet-actions">
           <Button onClick={() => navigate("/projects")}>Explore my work <ArrowUpRight size={16}/></Button>
-          <button className="quiet-resume-link" onClick={onOpenResume}>View résumé <ArrowUpRight size={15}/></button>
+          <button className="quiet-resume-link" onClick={onOpenResume}>Résumé <ArrowUpRight size={15}/></button>
         </div>
-        <p className="quiet-opportunity-note">Open to full-time roles · Also available for selected freelance projects</p>
-        <div className="quiet-meta"><span>OPEN TO BUSINESS · DATA · OPERATIONS ROLES</span><span>SQL · PYTHON · POWER BI</span></div>
+        <p className="quiet-opportunity-note">Seeking full-time opportunities in data, business and operations analytics</p>
+        <div className="quiet-meta"><span>SQL · PYTHON · POWER BI</span><span>BUSINESS · PRODUCT · FINTECH</span></div>
       </div>
-      <div className="quiet-hero-space" aria-hidden="true"><span>ANALYTICS</span><i/></div>
+      <button className="home-feature-panel home-feature-real" onClick={() => navigate("/projects/retail-profitability-inventory-intelligence")} aria-label="Explore retail case study">
+        <div className="home-feature-top"><span>FIELD NOTE 01 / RETAIL INTELLIGENCE</span><span>INDEPENDENT ANALYSIS <ArrowUpRight size={14}/></span></div>
+        <div className="home-feature-image-wrap"><img src="/images/retail-dashboard.webp" alt="Actual Power BI executive overview showing net sales, calculated profit, profit margin, units sold, sales trends, division and store performance"/><span className="home-image-caption">POWER BI EXECUTIVE OVERVIEW</span></div>
+        <div className="home-feature-bottom"><div><span className="home-feature-eyebrow">THE BUSINESS SIGNAL</span><strong>11.22M <i>net sales</i></strong><p>4.96M calculated profit · 44.23% margin · 125K units sold</p></div><span className="home-feature-open">EXPLORE CASE <ArrowUpRight size={16}/></span></div>
+        <p className="home-feature-disclaimer">Independent portfolio analysis · Dataset-based results, not client performance</p>
+      </button>
     </section>
 
     <section className="quiet-selected page-shell">
