@@ -766,3 +766,38 @@ th,td{border-color:var(--line)!important}
 @media(prefers-reduced-motion:reduce){
  body,.home-feature-real{transition:none!important}
 }
+
+
+/* Contrast and surface refinement from visual review feedback */
+:root{
+ --paper:#111713;--white:#1b251e;--ink:#f3f6f1;--muted:#b4c0b5;--line:#3b493e;
+ --blue:#b8d6a8;--accent:#b8d6a8;--navy:#202f24;--surface-soft:#26342a;--surface-raised:#2b3b2f;
+}
+:root[data-theme="light"]{
+ --paper:#f5f7f2;--white:#ffffff;--ink:#17231a;--muted:#526256;--line:#d5dfd4;
+ --blue:#326a45;--accent:#326a45;--navy:#203126;--surface-soft:#e9f0e7;--surface-raised:#ffffff;
+}
+.quiet-home{background:radial-gradient(ellipse at 80% 14%,color-mix(in srgb,var(--accent) 17%,transparent),transparent 40%),var(--paper)!important}
+.quiet-hero-redesign .quiet-kicker,.quiet-hero-redesign .quiet-intro,.quiet-opportunity-note{color:var(--muted)!important}
+.quiet-hero-redesign .quiet-hero-copy h1{color:var(--ink)!important}
+.quiet-hero-redesign .quiet-hero-copy h1 em{color:var(--accent)!important}
+.quiet-hero-redesign .quiet-meta{color:var(--muted)!important;border-color:var(--line)!important}
+.home-feature-real{background:var(--white)!important;color:var(--ink)!important;border-color:var(--line)!important;box-shadow:var(--shadow)!important}
+.home-feature-real .home-feature-top,.home-feature-bottom p,.home-feature-disclaimer{color:var(--muted)!important}
+.home-feature-bottom strong{color:var(--ink)!important}
+.home-feature-bottom strong i,.home-feature-eyebrow,.home-feature-open{color:var(--accent)!important}
+.quiet-selected{background:var(--surface-soft)!important;color:var(--ink)!important}
+.quiet-project-row{color:var(--ink)!important;border-color:var(--line)!important}
+.quiet-project-name{color:var(--ink)!important}
+.quiet-project-name small{color:var(--muted)!important}
+.quiet-about{background:var(--surface-raised)!important;color:var(--ink)!important}
+.quiet-about-inner>div>p{color:var(--muted)!important}
+.quiet-contact{background:var(--navy)!important;color:#f3f6f1!important}
+.quiet-contact h2{color:#f3f6f1!important}
+.quiet-contact .quiet-label,.quiet-contact h2 em{color:#c6e5b7!important}
+.quiet-contact-actions a,.quiet-contact-actions a:first-child{color:#d5edc9!important;border-color:#a8c69b!important}
+/* Header and footer use the same page canvas; no unrelated dark footer strip */
+.site-header{background:color-mix(in srgb,var(--paper) 94%,transparent)!important;border-color:var(--line)!important}
+.footer{width:100%!important;max-width:none!important;margin:0!important;padding:42px max(24px,calc((100% - 1280px)/2)) 24px!important;background:var(--paper)!important;color:var(--ink)!important;border-top:1px solid var(--line)!important}
+.footer>div:first-child p,.footer-links a,.footer-links button,.footer>small{color:var(--muted)!important}
+.footer>small{border-color:var(--line)!important}
